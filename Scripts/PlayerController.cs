@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ScreenFader screenFader; 
     [SerializeField] private PlayerAnimationController playerAnimationController;
     private Rigidbody2D _rb;
-    private Collider2D _collider;
+    [SerializeField] private Collider2D myCollider;
     [Header("Actions")]
     public InputAction moveAction; //Action for moving player horizontally
     public InputAction flipGravityAction; //Action for flipping gravity
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         // playerAnimationController = GetComponent<PlayerAnimationController>();
         _rb = GetComponent<Rigidbody2D>();
-        _collider = GetComponent<Collider2D>();
+        // _collider = GetComponent<Collider2D>();
         screenFader = FindObjectOfType<ScreenFader>();
 
         moveAction.Enable();
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded()
     {
         float extraHeightTest = 0.2f; //Gives you a little bit of room to remain grounded
-        var bounds = _collider.bounds;
+        var bounds = myCollider.bounds;
         
         //Get ray direction
         var rayDirection = Vector2.zero;
