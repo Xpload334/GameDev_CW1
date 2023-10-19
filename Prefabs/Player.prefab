@@ -177,7 +177,7 @@ MonoBehaviour:
   desiredGravity: {x: 0, y: -50}
   flipBoostStrength: 5
   terminalVelocity: 20
-  playerSpeed: 7
+  playerSpeed: 8
 --- !u!70 &527944405
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
