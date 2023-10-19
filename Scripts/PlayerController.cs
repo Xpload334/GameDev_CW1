@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float flipBoostStrength = 5f; //Boost in velocity to give when flipping
     [SerializeField] private float terminalVelocity = 20f; //Max velocity
     public float playerSpeed = 7.0f;
+    [SerializeField] private float movementSmoothing = .05f;
+    private Vector2 m_Velocity;
     private Vector2 _velocity;
 
     void Start ()
@@ -40,24 +42,33 @@ public class PlayerController : MonoBehaviour
 
     void Update ()
     {
+        //HORIZONTAL
         horizontalInput = moveAction.ReadValue<float>(); //read horizontal movement
         _velocity.x = horizontalInput * playerSpeed; //Set horizontal velocity
 
-        IsGrounded();
+        //GRAVITY FLIP
         if (flipGravityAction.triggered && IsGrounded()) //check if flip gravity triggered, and player is grounded
         {
             FlipGravity();
         }
-        _velocity.y = _rb.velocity.y;
-
+        
+        //VERTICAL
+        _velocity.y = _rb.velocity.y; //keep y velocity consistent
         //Terminal velocity
-        if (_velocity.y > terminalVelocity) _velocity.y = terminalVelocity;
-        if (_velocity.y < -terminalVelocity) _velocity.y = -terminalVelocity;
-        
-        _rb.velocity = _velocity; //move object
+        if (_rb.velocity.y > terminalVelocity) _velocity.y = terminalVelocity;
+        if (_rb.velocity.y < -terminalVelocity) _velocity.y = -terminalVelocity;
         
         
-        //Animations
+        //MOVEMENT
+        // _rb.velocity = _velocity; //move object
+        
+        //Get target velocity
+        Vector2 targetVelocity = new Vector2(horizontalInput * playerSpeed, _velocity.y);
+        //Smooth damp to target velocity
+        _rb.velocity = Vector2.SmoothDamp(_rb.velocity, targetVelocity, ref m_Velocity, movementSmoothing);
+        
+        
+        //ANIMATIONS
         playerAnimationController.AnimateMovement(horizontalInput);
     }
 
