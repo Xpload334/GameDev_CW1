@@ -53,11 +53,6 @@ public class PlayerController : MonoBehaviour
         // if (velocity.y < -maxVelocity) velocity.y = -maxVelocity;
         velocity.y = gravityStrength; //No acceleration gravity, more like VVVVVV
         rb.velocity = velocity; //move object
-
-        if (funnyFlipAction.triggered)
-        {
-            playerAnimationController.funnyFlip();
-        }
     }
 
     //Can only flip gravity when grounded

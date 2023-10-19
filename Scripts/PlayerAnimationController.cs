@@ -13,10 +13,10 @@ public class PlayerAnimationController : MonoBehaviour
 
     private static readonly int FunnyFlipPar = Animator.StringToHash("FunnyFlip");
     [SerializeField] private Vector3 desiredRotation;
-    private Vector3 desiredLocalPosition = new Vector3(0, -1f, 0);
+    [SerializeField] private Vector3 desiredLocalPosition = new Vector3(0, -1f, 0);
+    [SerializeField] private float localPositionChange = 0.5f;
     [SerializeField] private float rotationSpeed = 5f;
     private float positionChangeSpeed = 10f;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -32,15 +32,16 @@ public class PlayerAnimationController : MonoBehaviour
         {
             //Animate walking
             case 0:
-                anim.SetInteger (AnimationPar, 0);
+                anim.SetInteger(AnimationPar, 0);
+                
                 break;
             case > 0:
                 desiredRotation.y = 90;
-                anim.SetInteger (AnimationPar, 1);
+                anim.SetInteger(AnimationPar, 1);
                 break;
             default:
                 desiredRotation.y = -90;
-                anim.SetInteger (AnimationPar, 1);
+                anim.SetInteger(AnimationPar, 1);
                 break;
         }
         
@@ -48,12 +49,12 @@ public class PlayerAnimationController : MonoBehaviour
         if (playerController.gravityStrength > 0)
         {
             desiredRotation.z = 180;
-            desiredLocalPosition.y = 1f;
+            desiredLocalPosition.y = localPositionChange;
         }
         else
         {
             desiredRotation.z = 0;
-            desiredLocalPosition.y = -1f;
+            desiredLocalPosition.y = -localPositionChange;
         }
         
         //Animate falling
@@ -69,10 +70,6 @@ public class PlayerAnimationController : MonoBehaviour
     {
         anim.SetTrigger(JumpPar);
     }
-
-    public void funnyFlip()
-    {
-        anim.SetTrigger(FunnyFlipPar);
-    }
+    
     
 }
