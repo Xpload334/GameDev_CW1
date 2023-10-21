@@ -5,6 +5,7 @@ using UnityEngine;
 //
 public class ExitDoor : MonoBehaviour
 {
+    private LevelSceneManager _levelSceneManager;
     public bool isOpen;
     public bool isLevelComplete;
     public PlayerController playerAtDoor;
@@ -14,6 +15,7 @@ public class ExitDoor : MonoBehaviour
     {
         _collider = GetComponent<Collider2D>();
         StartCoroutine(DoorCheckIEnumerator());
+        _levelSceneManager = FindObjectOfType<LevelSceneManager>();
     }
 
     // Update is called once per frame
@@ -32,6 +34,8 @@ public class ExitDoor : MonoBehaviour
         //Trigger exit door condition
         isLevelComplete = true;
         Debug.Log("Level Complete!");
+        yield return new WaitForSeconds(1f);
+        _levelSceneManager.PassLevel();
     }
 
     bool CanExit()

@@ -5,11 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
+    private LevelSceneManager _levelSceneManager;
+    
     public int health;
     public GameObject deathAnim;
 
     private void Start()
     {
+        _levelSceneManager = FindObjectOfType<LevelSceneManager>();
     }
 
     public void TakeDamage(int h)
@@ -25,6 +28,10 @@ public class Health : MonoBehaviour
     {
         Instantiate(deathAnim, transform.position, Quaternion.identity);
         gameObject.SetActive(false);
+        
+        
+        //Reload current scene if player dies
+        _levelSceneManager.PlayerDeath();
     }
 
     // Update is called once per frame
