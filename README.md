@@ -19,3 +19,4 @@ Make sure you download the following packages in order to have this work in the 
 ## References
 - Stylized Astronaut Model: https://assetstore.unity.com/packages/3d/characters/humanoids/sci-fi/stylized-astronaut-114298 (Standard Unity Asset Store EULA)
 - Pattern Pack Pixel: https://kenney.nl/assets/pattern-pack-pixel (CC)
+- Sci-fi Platform Tiles: https://opengameart.org/content/sci-fi-platform-tiles

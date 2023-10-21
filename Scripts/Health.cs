@@ -12,22 +12,23 @@ public class Health : MonoBehaviour
     {
     }
 
-    public void TakeDamage(int h) {
-	health -= h;
-	if (health <= 0) {
-		Die();
-	}
-	
+    public void TakeDamage(int h)
+    {
+        health -= h;
+        if (health <= 0)
+        {
+            Die();
+        }
     }
 
-    void Die() {
-	Instantiate(deathAnim, transform.position, Quaternion.identity);
-	gameObject.SetActive(false);
-    }	  
+    void Die()
+    {
+        Instantiate(deathAnim, transform.position, Quaternion.identity);
+        gameObject.SetActive(false);
+    }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         flipGravityAction.Enable();
         
         //set gravity
-        Physics2D.gravity = desiredGravity;
+        _rb.gravityScale = desiredGravity.y / Physics2D.gravity.y;
         _velocity = Vector3.zero;
     }
 
@@ -77,7 +77,8 @@ public class PlayerController : MonoBehaviour
     {
         //reverse gravity direction
         desiredGravity.y = -desiredGravity.y;
-        Physics2D.gravity = new Vector2(Physics2D.gravity.x, desiredGravity.y);
+        // Physics2D.gravity = new Vector2(Physics2D.gravity.x, desiredGravity.y);
+        _rb.gravityScale = desiredGravity.y / Physics2D.gravity.y; //Set rigidbody gravity scale instead
         
         //Provide small boost
         _velocity.y = desiredGravity.normalized.y * flipBoostStrength;
@@ -94,7 +95,7 @@ public class PlayerController : MonoBehaviour
         
         //Get ray direction
         var rayDirection = Vector2.zero;
-        if (Physics2D.gravity.y < 0) //Use current gravity direction
+        if (_rb.gravityScale > 0) //CHANGED TO USE GRAVITY SCALE
         {
             rayDirection.y = -1;
         }
