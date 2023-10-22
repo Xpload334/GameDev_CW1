@@ -46,8 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081476c558b44e244957c206f9b04b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathFadeDelay: 1
-  currentScene: FirstTestingScene
+  currentScene: 
   currentSceneIndex: 0
   levelsUnlocked: 0
 --- !u!114 &88095498345326910
@@ -117,7 +116,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   fadeImage: {fileID: 88095499601519322}
-  fadeSpeed: 1
+  fadeOutDelay: 0.25
+  fadeInDelay: 0.25
+  fadeSpeed: 2
 --- !u!1 &88095499601519320
 GameObject:
   m_ObjectHideFlags: 0
