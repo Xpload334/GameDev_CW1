@@ -14,6 +14,8 @@ public class ScreenFader : MonoBehaviour
     public UnityEvent afterLevelComplete; //Call when you want to switch to the next level
     [Header("Properties")]
     public Image fadeImage;
+    public float fadeOutDelay = 0.5f;
+    public float fadeInDelay = 0.5f;
     public float fadeSpeed = 1.0f;
 
     private void Start()
@@ -42,6 +44,7 @@ public class ScreenFader : MonoBehaviour
      */
     private IEnumerator FadeToBlack(UnityEvent eventToTrigger)
     {
+        yield return new WaitForSeconds(fadeOutDelay);
         float alpha = 0;
 
         while (alpha < 1)
@@ -60,6 +63,7 @@ public class ScreenFader : MonoBehaviour
      */
     private IEnumerator FadeFromBlack(UnityEvent eventToTrigger)
     {
+        yield return new WaitForSeconds(fadeInDelay);
         float alpha = 0;
 
         while (alpha < 1)

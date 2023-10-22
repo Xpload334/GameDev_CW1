@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
  */
 public class LevelSceneManager : MonoBehaviour
 {
-    public float deathFadeDelay = 1f;
+    // public float deathFadeDelay = 1f;
     public static LevelSceneManager Instance { get; set; }
     private ScreenFader _screenFader;
     public string currentScene;
@@ -44,13 +44,11 @@ public class LevelSceneManager : MonoBehaviour
     {
         _screenFader.FadeIn();
     }
-
-    /**
-     * Wait 1s, then fade out and reload for player death
-     */
+    
     public void PlayerDeath()
     {
-        StartCoroutine(PlayerDeathDelayed());
+        _screenFader.PlayerDeath();
+        // StartCoroutine(PlayerDeathDelayed());
     }
 
     private void LoadScene(string sceneName)
@@ -86,9 +84,9 @@ public class LevelSceneManager : MonoBehaviour
         PassLevel(currentSceneIndex);
     }
 
-    IEnumerator PlayerDeathDelayed()
-    {
-        yield return new WaitForSeconds(deathFadeDelay);
-        _screenFader.PlayerDeath();
-    }
+    // void PlayerDeathDelayed()
+    // {
+    //     // yield return new WaitForSeconds(deathFadeDelay);
+    //     _screenFader.PlayerDeath();
+    // }
 }
