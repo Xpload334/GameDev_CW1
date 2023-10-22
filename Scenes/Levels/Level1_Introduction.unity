@@ -4824,7 +4824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7165596190366168037, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_PathPosition
-      value: 0
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 7165596191766042315, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_Waypoints.Array.data[0].position.x
@@ -5054,6 +5054,18 @@ PrefabInstance:
     - target: {fileID: 88095498345326910, guid: 4c05bf8a4305d0c498b34e8b3f31cdcd, type: 3}
       propertyPath: fadeOutDelay
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 88095498345326910, guid: 4c05bf8a4305d0c498b34e8b3f31cdcd, type: 3}
+      propertyPath: afterLevelComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 88095498345326910, guid: 4c05bf8a4305d0c498b34e8b3f31cdcd, type: 3}
+      propertyPath: afterLevelComplete.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 88095498345326910, guid: 4c05bf8a4305d0c498b34e8b3f31cdcd, type: 3}
+      propertyPath: afterLevelComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c05bf8a4305d0c498b34e8b3f31cdcd, type: 3}

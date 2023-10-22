@@ -64,4 +64,14 @@ public class ExitDoor : MonoBehaviour
             playerAtDoor = null;
         }
     }
+
+    public void OpenDoor()
+    {
+        isOpen = true;
+    }
+
+    public void CloseDoor()
+    {
+        isOpen = false;
+    }
 }

@@ -42,7 +42,7 @@ public class LevelSceneManager : MonoBehaviour
 
     void FadeIn()
     {
-        _screenFader.FadeIn();
+        _screenFader.FadeFromBlack();
     }
     
     public void PlayerDeath()

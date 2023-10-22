@@ -79,7 +79,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 88095498345326910}
         m_TargetAssemblyTypeName: ScreenFader, Assembly-CSharp
-        m_MethodName: FadeIn
+        m_MethodName: FadeFromBlack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -106,7 +106,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 88095498345326910}
         m_TargetAssemblyTypeName: ScreenFader, Assembly-CSharp
-        m_MethodName: FadeIn
+        m_MethodName: FadeFromBlack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

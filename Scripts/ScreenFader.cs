@@ -34,7 +34,7 @@ public class ScreenFader : MonoBehaviour
         StartCoroutine(FadeToBlack(afterLevelComplete));
     }
 
-    public void FadeIn()
+    public void FadeFromBlack()
     {
         StartCoroutine(FadeFromBlack(null));
     }
