@@ -11,7 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerAnimationController playerAnimationController;
     private Rigidbody2D _rb;
     [SerializeField] private Collider2D myCollider;
-    [Header("Actions")]
+    [Header("Actions")] 
+    public bool canAct = true;
     public InputAction moveAction; //Action for moving player horizontally
     public InputAction flipGravityAction; //Action for flipping gravity
     public float horizontalInput; //float for horizontal input
@@ -44,11 +45,11 @@ public class PlayerController : MonoBehaviour
     void Update ()
     {
         //HORIZONTAL
-        horizontalInput = moveAction.ReadValue<float>(); //read horizontal movement
+        if(canAct) horizontalInput = moveAction.ReadValue<float>(); //read horizontal movement
         _velocity.x = horizontalInput * playerSpeed; //Set horizontal velocity
 
         //GRAVITY FLIP
-        if (flipGravityAction.triggered && IsGrounded()) //check if flip gravity triggered, and player is grounded
+        if (flipGravityAction.triggered && IsGrounded() && canAct) //check if flip gravity triggered, and player is grounded
         {
             FlipGravity();
         }
@@ -114,5 +115,17 @@ public class PlayerController : MonoBehaviour
         var rayColour = raycastHit ? Color.green : Color.red; //Green if hits ground, red if doesn't
         Debug.DrawRay(bounds.center, rayDirection * (bounds.extents.y + extraHeightTest), rayColour);
         return raycastHit;
+    }
+
+    public void SetCanAct(bool state)
+    {
+        horizontalInput = 0;
+        canAct = state;
+    }
+
+    public void PlayerWin()
+    {
+        SetCanAct(false);
+        playerAnimationController.TriggerWinAnim();
     }
 }

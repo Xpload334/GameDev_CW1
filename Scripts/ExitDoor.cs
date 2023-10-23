@@ -33,7 +33,11 @@ public class ExitDoor : MonoBehaviour
         
         //Trigger exit door condition
         isLevelComplete = true;
+        playerAtDoor.PlayerWin();
         Debug.Log("Level Complete!");
+        
+        
+        //Wait and then trigger level complete
         yield return new WaitForSeconds(1f);
         _levelSceneManager.PassLevel();
     }

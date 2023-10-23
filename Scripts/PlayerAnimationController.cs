@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    
+    [Header("Animator Params")]
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Animator anim;
     private static readonly int HorizontalInputPar = Animator.StringToHash("HorizontalInput");
     private static readonly int JumpPar = Animator.StringToHash("Jump");
     private static readonly int GroundedPar = Animator.StringToHash("IsGrounded");
+    private static readonly int LevelCompletePar = Animator.StringToHash("LevelComplete");
 
+    [Header("Rotations")] 
+    [SerializeField] private bool ShouldRotateYWithInput = true;
+    [SerializeField] private bool ShouldRotateZWithInput = true;
     [SerializeField] private Vector3 desiredRotation;
     [SerializeField] private Vector3 desiredLocalPosition = new Vector3(0, -1f, 0);
     [SerializeField] private float localPositionChange = 0.5f;
@@ -29,20 +33,23 @@ public class PlayerAnimationController : MonoBehaviour
         //Animate flipping
         if (playerController.desiredGravity.y > 0)
         {
-            desiredRotation.z = 180;
+            if(ShouldRotateZWithInput) desiredRotation.z = 180;
             desiredLocalPosition.y = localPositionChange;
         }
         else
         {
-            desiredRotation.z = 0;
+            if(ShouldRotateZWithInput) desiredRotation.z = 0;
             desiredLocalPosition.y = -localPositionChange;
         }
         
+
+
         //Animate falling
         anim.SetBool(GroundedPar, playerController.IsGrounded());
 
         //Handle position lerp
         transform.localPosition = Vector3.Lerp(transform.localPosition, desiredLocalPosition, _positionChangeSpeed * Time.deltaTime);
+        
         //Handle rotation lerp
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(desiredRotation), rotationSpeed * Time.deltaTime);
     }
@@ -52,17 +59,24 @@ public class PlayerAnimationController : MonoBehaviour
         anim.SetTrigger(JumpPar);
     }
 
+    public void TriggerWinAnim()
+    {
+        ShouldRotateYWithInput = false;
+        desiredRotation.y = 180;
+        anim.SetTrigger(LevelCompletePar);
+    }
+
     public void AnimateMovement(float horizontalInput)
     {
         switch (horizontalInput)
         {
             //Animate walking
             case < 0:
-                desiredRotation.y = -90;
+                if(ShouldRotateYWithInput) desiredRotation.y = -90;
                 anim.SetInteger(HorizontalInputPar, 1);
                 break;
             case > 0:
-                desiredRotation.y = 90;
+                if(ShouldRotateYWithInput) desiredRotation.y = 90;
                 anim.SetInteger(HorizontalInputPar, 1);
                 break;
             default:
