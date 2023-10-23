@@ -30,7 +30,7 @@ public class LevelSceneManager : MonoBehaviour
 
     private void Start()
     {
-        _screenFader = FindObjectOfType<ScreenFader>();
+        _screenFader = GetComponent<ScreenFader>();
         levelsUnlocked = PlayerPrefs.GetInt("levelsUnlocked", 1);
 
         currentScene = SceneManager.GetActiveScene().name;
