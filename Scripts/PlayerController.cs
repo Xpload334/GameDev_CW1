@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public InputAction moveAction; //Action for moving player horizontally
     public InputAction flipGravityAction; //Action for flipping gravity
     public float horizontalInput; //float for horizontal input
+    public UnityEvent onFlipGravityEvent;
     [Header("Physics")]
     [SerializeField] private LayerMask groundLayerMask; //What layer to use for ground tiles
     public Vector2 desiredGravity = new(0, -50f); //Vector for gravity
@@ -85,6 +86,10 @@ public class PlayerController : MonoBehaviour
         
         //Do anims
         playerAnimationController.TriggerJumpAnim();
+        
+        //Invoke flip event
+        onFlipGravityEvent.Invoke();
+        
     }
 
     //Check if player is grounded
