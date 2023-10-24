@@ -59,12 +59,17 @@ public class LevelSceneManager : MonoBehaviour
         SceneManager.LoadScene(levelIndex);
     }
 
+    public void LoadNextLevel()
+    {
+        LoadLevel(currentSceneIndex+1);
+    }
+
     public void ReloadCurrentLevel()
     {
         LoadLevel(currentSceneIndex);
     }
 
-    //On level complete, unlock the next level
+    //On level complete, unlock the next level (doesn't change scenes)
     public void PassLevel(int passedLevelIndex)
     {
         if (passedLevelIndex >= PlayerPrefs.GetInt("levelsUnlocked"))
@@ -77,6 +82,7 @@ public class LevelSceneManager : MonoBehaviour
         _screenFader.LevelComplete(); //Trigger level complete effect
     }
 
+    //On level complete, unlock the next level
     public void PassLevel()
     {
         PassLevel(currentSceneIndex);

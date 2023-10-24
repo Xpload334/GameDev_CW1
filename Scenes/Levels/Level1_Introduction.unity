@@ -5043,30 +5043,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 88095498345326910, guid: 4c05bf8a4305d0c498b34e8b3f31cdcd, type: 3}
-      propertyPath: fadeSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 88095498345326910, guid: 4c05bf8a4305d0c498b34e8b3f31cdcd, type: 3}
-      propertyPath: fadeInDelay
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 88095498345326910, guid: 4c05bf8a4305d0c498b34e8b3f31cdcd, type: 3}
-      propertyPath: fadeOutDelay
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 88095498345326910, guid: 4c05bf8a4305d0c498b34e8b3f31cdcd, type: 3}
-      propertyPath: afterLevelComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 88095498345326910, guid: 4c05bf8a4305d0c498b34e8b3f31cdcd, type: 3}
-      propertyPath: afterLevelComplete.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 88095498345326910, guid: 4c05bf8a4305d0c498b34e8b3f31cdcd, type: 3}
-      propertyPath: afterLevelComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c05bf8a4305d0c498b34e8b3f31cdcd, type: 3}
 --- !u!1001 &1689044945

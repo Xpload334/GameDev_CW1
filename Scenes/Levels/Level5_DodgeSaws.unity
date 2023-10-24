@@ -2897,7 +2897,7 @@ Transform:
   - {fileID: 97471758}
   - {fileID: 1779558997}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &262629105
 PrefabInstance:
@@ -7217,11 +7217,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 88095498345326910, guid: 4c05bf8a4305d0c498b34e8b3f31cdcd, type: 3}
       propertyPath: afterLevelComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 88095498345326910, guid: 4c05bf8a4305d0c498b34e8b3f31cdcd, type: 3}
       propertyPath: afterLevelComplete.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: ReloadCurrentLevel
       objectReference: {fileID: 0}
     - target: {fileID: 88095498345326910, guid: 4c05bf8a4305d0c498b34e8b3f31cdcd, type: 3}
       propertyPath: afterLevelComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
