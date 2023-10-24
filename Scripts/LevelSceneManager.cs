@@ -4,13 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/**
- * Present at all times
- */
 public class LevelSceneManager : MonoBehaviour
 {
     // public float deathFadeDelay = 1f;
-    public static LevelSceneManager Instance { get; set; }
+    // public static LevelSceneManager Instance { get; set; }
     private ScreenFader _screenFader;
     public string currentScene;
     public int currentSceneIndex = 1;
@@ -20,12 +17,12 @@ public class LevelSceneManager : MonoBehaviour
     private void Awake()
     {
         //Ensure only 1 exists
-        var objs = FindObjectsOfType<LevelSceneManager>();
-        if (objs.Length > 1)
-        {
-            Destroy(this.gameObject);
-        }
-        DontDestroyOnLoad(this.gameObject);
+        // var objs = FindObjectsOfType<LevelSceneManager>();
+        // if (objs.Length > 1)
+        // {
+        //     Destroy(this.gameObject);
+        // }
+        // DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start()
@@ -75,6 +72,7 @@ public class LevelSceneManager : MonoBehaviour
             PlayerPrefs.SetInt("levelsUnlocked", passedLevelIndex+1);
         }
         Debug.Log("Level "+PlayerPrefs.GetInt("levelsUnlocked")+" has been unlocked");
+        levelsUnlocked = PlayerPrefs.GetInt("levelsUnlocked", 1);
         
         _screenFader.LevelComplete(); //Trigger level complete effect
     }

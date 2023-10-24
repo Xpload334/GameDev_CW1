@@ -4,9 +4,6 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-/**
- * Present at all times
- */
 public class ScreenFader : MonoBehaviour
 {
     [Header("Events")]

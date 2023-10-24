@@ -39,6 +39,11 @@ public class ExitDoor : MonoBehaviour
         
         //Wait and then trigger level complete
         yield return new WaitForSeconds(1f);
+        if (_levelSceneManager == null)
+        {
+            Debug.Log("Lost track of scene manager, finding");
+            _levelSceneManager = FindObjectOfType<LevelSceneManager>();
+        }
         _levelSceneManager.PassLevel();
     }
 
