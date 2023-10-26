@@ -351,18 +351,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 6475306377112357402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3385c1fa90a337e4eba728b7a1b5ca0c, type: 3}
+  m_Script: {fileID: 11500000, guid: c470a1966f7809f45890024f2d335938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   desiredGravity: {x: 0, y: -50}
-  flipBoostStrength: 2
-  terminalVelocity: 15
-  playerSpeed: 8
+  flipBoostStrength: 5
+  terminalVelocity: 20
+  playerSpeed: 7
   movementSmoothing: 0.05
-  invert: 1
+  invert: 0
 --- !u!50 &653704211738103530
 Rigidbody2D:
   serializedVersion: 4
