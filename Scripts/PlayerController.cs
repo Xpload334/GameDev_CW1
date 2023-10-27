@@ -93,6 +93,24 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    //Can only flip gravity when grounded
+    public void FlipGravity(bool isUp)
+    {
+        if((isUp && desiredGravity.y < 0) || (!isUp && desiredGravity.y > 0))
+        {
+            //reverse gravity direction
+            desiredGravity.y = -desiredGravity.y;
+            // Physics2D.gravity = new Vector2(Physics2D.gravity.x, desiredGravity.y);
+            _rb.gravityScale = desiredGravity.y / Physics2D.gravity.y; //Set rigidbody gravity scale instead
+
+            //Provide small boost
+            _velocity.y = desiredGravity.normalized.y * flipBoostStrength;
+
+            //Do anims
+            playerAnimationController.TriggerJumpAnim();
+        }
+    }
+
     //Check if player is grounded
     public bool IsGrounded()
     {
