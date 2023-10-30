@@ -48,7 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentScene: 
   currentSceneIndex: 0
-  levelsUnlocked: 0
 --- !u!114 &88095498345326910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +207,7 @@ GameObject:
   - component: {fileID: 88095499846372706}
   - component: {fileID: 88095499846372705}
   m_Layer: 5
-  m_Name: Persistent Canvas
+  m_Name: TopScreen Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -254,7 +253,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &88095499846372706
 MonoBehaviour:

@@ -6499,11 +6499,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7165596190366168037, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_PathPosition
-      value: 0
+      value: 0.3752997
       objectReference: {fileID: 0}
     - target: {fileID: 7165596191766042315, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_Waypoints.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7165596191766042315, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_Waypoints.Array.data[0].position.x

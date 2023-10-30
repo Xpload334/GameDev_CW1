@@ -49,6 +49,7 @@ public class ScreenFader : MonoBehaviour
     private IEnumerator FadeToBlack(UnityEvent eventToTrigger)
     {
         _isLoading = true;
+        fadeImage.gameObject.SetActive(true);
         yield return new WaitForSeconds(fadeOutDelay);
         float alpha = 0;
 
@@ -69,6 +70,7 @@ public class ScreenFader : MonoBehaviour
     private IEnumerator FadeToBlack(Action actionToTrigger)
     {
         _isLoading = true;
+        fadeImage.gameObject.SetActive(true);
         yield return new WaitForSeconds(fadeOutDelay);
         float alpha = 0;
 
@@ -90,6 +92,7 @@ public class ScreenFader : MonoBehaviour
     private IEnumerator FadeFromBlack(UnityEvent eventToTrigger)
     {
         _isLoading = true;
+        fadeImage.gameObject.SetActive(true);
         yield return new WaitForSeconds(fadeInDelay);
         float alpha = 0;
 
@@ -103,5 +106,6 @@ public class ScreenFader : MonoBehaviour
         // Invoke finishing event
         eventToTrigger?.Invoke();
         _isLoading = false;
+        fadeImage.gameObject.SetActive(false);
     }
 }
