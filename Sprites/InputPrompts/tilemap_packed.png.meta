@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a42a2c45f2fdfa242ac9a1f6bc1740b4
+guid: 84fa46607c6e02547aae5f3ad445015b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -66,10 +66,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -104,13 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: crystal-qubodup-ccby3-16-yellow_0
+      name: spacebar
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 16
+        x: 496
+        y: 273
+        width: 48
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a5cc291699e21b4ab6b95742a4340f1
-      internalID: 1442221336
+      spriteID: c25f78bbce0e83b45966c03769f23089
+      internalID: -2047420585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal-qubodup-ccby3-16-yellow_1
+      name: key_a
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
+        x: 288
+        y: 321
+        width: 15
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1d2033e4302a02459ed3f3d532cf141
-      internalID: 285099555
+      spriteID: a67bda49b80163b47a6ae27610fcd896
+      internalID: -1884166581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal-qubodup-ccby3-16-yellow_2
+      name: key_d
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
+        x: 320
+        y: 321
+        width: 15
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,20 +160,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba2c0dede28a11e4a810a90487fdac69
-      internalID: 550860963
+      spriteID: 6642bc00bcf6bbe4ca071413f0061ea1
+      internalID: 2087024294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal-qubodup-ccby3-16-yellow_3
+      name: key_q
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
+        x: 272
+        y: 337
+        width: 15
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22ca8185168c9814e8ac41f3d7ff0d10
-      internalID: 1285879840
+      spriteID: 6c510e1118b5ca24ebdc2b89588a0af3
+      internalID: -1370525092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal-qubodup-ccby3-16-yellow_4
+      name: key_right
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
+        x: 496
+        y: 305
+        width: 15
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,20 +202,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d661c1da09cef14eae5dfcb6455ca0e
-      internalID: -1417181404
+      spriteID: ddf5cfa70abf9d440ad550831a28a84e
+      internalID: 839599872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal-qubodup-ccby3-16-yellow_5
+      name: key_left
       rect:
         serializedVersion: 2
-        x: 80
-        y: 0
-        width: 16
-        height: 16
+        x: 528
+        y: 305
+        width: 15
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,50 +223,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56dbc411b39ef27499b3976e9b16334c
-      internalID: 785727734
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: crystal-qubodup-ccby3-16-yellow_6
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 89cb1720a067b2f4995eb6a517488852
-      internalID: 1095095174
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: crystal-qubodup-ccby3-16-yellow_7
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a6db9c4a3fa242c43922bf721dc929b0
-      internalID: 1106284839
+      spriteID: 350909911973c10419b5a08e22b621ef
+      internalID: 63009233
       vertices: []
       indices: 
       edges: []
@@ -274,7 +232,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f934502cf6220504b8c19035993a4b6d
+    spriteID: 73467e0b502962644b9bc2fad6154d15
     internalID: 0
     vertices: []
     indices: 
@@ -282,14 +240,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      crystal-qubodup-ccby3-16-yellow_1: 285099555
-      crystal-qubodup-ccby3-16-yellow_5: 785727734
-      crystal-qubodup-ccby3-16-yellow_7: 1106284839
-      crystal-qubodup-ccby3-16-yellow_0: 1442221336
-      crystal-qubodup-ccby3-16-yellow_4: -1417181404
-      crystal-qubodup-ccby3-16-yellow_2: 550860963
-      crystal-qubodup-ccby3-16-yellow_6: 1095095174
-      crystal-qubodup-ccby3-16-yellow_3: 1285879840
+      spacebar: -2047420585
+      key_left: 63009233
+      key_d: 2087024294
+      key_right: 839599872
+      key_q: -1370525092
+      key_a: -1884166581
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
