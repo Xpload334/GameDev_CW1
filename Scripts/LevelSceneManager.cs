@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class LevelSceneManager : MonoBehaviour
@@ -11,8 +13,21 @@ public class LevelSceneManager : MonoBehaviour
     private ScreenFader _screenFader;
     public string currentScene;
     public int currentSceneIndex = 1;
+    
+    //Use in UI to enable buttons for level select
+    private int _levelsUnlocked;
+    public int LevelsUnlocked
+    {
+        get => _levelsUnlocked;
+        set
+        {
+            _levelsUnlocked = value;
+            if (OnLevelUnlockedChange != null) OnLevelUnlockedChange(_levelsUnlocked);
+        }
+    }
 
-    public int levelsUnlocked; //Use in UI to enable buttons for level select
+    public delegate void OnLevelUnlockedDelegate(int newVal);
+    public event OnLevelUnlockedDelegate OnLevelUnlockedChange;
 
     private void Awake()
     {
@@ -28,10 +43,22 @@ public class LevelSceneManager : MonoBehaviour
     private void Start()
     {
         _screenFader = GetComponent<ScreenFader>();
-        levelsUnlocked = PlayerPrefs.GetInt("levelsUnlocked", 1);
+        LevelsUnlocked = PlayerPrefs.GetInt("levelsUnlocked", 1);
 
         currentScene = SceneManager.GetActiveScene().name;
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        if (currentSceneIndex == 0)
+        {
+            if (LevelsUnlocked == 0)
+            {
+                Debug.Log("Level "+PlayerPrefs.GetInt("levelsUnlocked")+" has been unlocked");
+                PlayerPrefs.SetInt("levelsUnlocked", 1);
+            }
+            
+            LevelsUnlocked = PlayerPrefs.GetInt("levelsUnlocked", 1);
+        }
+        
         
         
         FadeIn();
@@ -48,13 +75,8 @@ public class LevelSceneManager : MonoBehaviour
         // StartCoroutine(PlayerDeathDelayed());
     }
 
-    private void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
-
     //Load level indices from Build Settings
-    public void LoadLevel(int levelIndex)
+    private void LoadLevel(int levelIndex)
     {
         SceneManager.LoadScene(levelIndex);
     }
@@ -77,15 +99,25 @@ public class LevelSceneManager : MonoBehaviour
             PlayerPrefs.SetInt("levelsUnlocked", passedLevelIndex+1);
         }
         Debug.Log("Level "+PlayerPrefs.GetInt("levelsUnlocked")+" has been unlocked");
-        levelsUnlocked = PlayerPrefs.GetInt("levelsUnlocked", 1);
+        LevelsUnlocked = PlayerPrefs.GetInt("levelsUnlocked", 1);
         
         _screenFader.LevelComplete(); //Trigger level complete effect
     }
 
     //On level complete, unlock the next level
+    // ReSharper disable Unity.PerformanceAnalysis
     public void PassLevel()
     {
         PassLevel(currentSceneIndex);
+    }
+
+    
+    /*
+     * Fade to black, then load the desired level index
+     */
+    public void StartLevel(int levelIndex)
+    {
+        _screenFader.StartFadeToBlack(() => LoadLevel(levelIndex));
     }
 
     // void PlayerDeathDelayed()

@@ -6479,11 +6479,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7165596190194429001, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.99999994
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7165596190194429001, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.9999995
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 7165596190366168037, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_XDamping
@@ -6502,8 +6502,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7165596191766042315, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
+      propertyPath: m_Waypoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165596191766042315, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_Waypoints.Array.data[0].position.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165596191766042315, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
+      propertyPath: m_Waypoints.Array.data[1].position.x
+      value: 25.3
       objectReference: {fileID: 0}
     - target: {fileID: 7165596191766042315, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_Waypoints.Array.data[2].position.x
@@ -6538,7 +6546,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888227293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.99999994, z: -4.9999995}
+  m_LocalPosition: {x: 0, y: 1, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
