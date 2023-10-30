@@ -10,12 +10,20 @@ public class ExitDoor : MonoBehaviour
     public bool isLevelComplete;
     public PlayerController playerAtDoor;
     private Collider2D _collider;
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
+    private static readonly int IsOpenPar = Animator.StringToHash("IsOpen");
+    
     // Start is called before the first frame update
     void Start()
     {
         _collider = GetComponent<Collider2D>();
         StartCoroutine(DoorCheckIEnumerator());
         _levelSceneManager = FindObjectOfType<LevelSceneManager>();
+        
+        
+        //Trigger animation if door is set to open on start
+        if(isOpen) OpenDoor();
     }
 
     // Update is called once per frame
@@ -77,10 +85,12 @@ public class ExitDoor : MonoBehaviour
     public void OpenDoor()
     {
         isOpen = true;
+        animator.SetBool(IsOpenPar, true);
     }
 
     public void CloseDoor()
     {
         isOpen = false;
+        animator.SetBool(IsOpenPar, false);
     }
 }
