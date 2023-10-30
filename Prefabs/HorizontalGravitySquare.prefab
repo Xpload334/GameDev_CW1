@@ -339,16 +339,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5957281629559167449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db84d9e9b6660f49b1bbc7413ff9df2, type: 3}
+  m_Script: {fileID: 11500000, guid: bf7aec5944196234c815c525ed89ec02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 8
-  horizontalGravity: -20000
-  flipBoostStrength: 2
-  terminalVelocity: 15
-  playerSpeed: 8
+    m_Bits: 0
+  horizontalGravity: -50
+  flipBoostStrength: 5
+  terminalVelocity: 20
+  playerSpeed: 7
   movementSmoothing: 0.05
   invert: 0
 --- !u!1 &9081179544351511353
