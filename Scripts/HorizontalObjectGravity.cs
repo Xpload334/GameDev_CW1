@@ -37,7 +37,4 @@ public class HorizontalObjectGravity : MonoBehaviour
         _rb.AddForce(horizontalGravityForce);
     }
 
-    void FixedUpdate()
-    {
-    }
 }
