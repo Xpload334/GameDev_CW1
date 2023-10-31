@@ -14,6 +14,7 @@ public class HorizontalObjectGravity : MonoBehaviour
     private Vector2 m_Velocity;
     private Vector2 _velocity;
     public bool invert;
+    public bool flipEnabled;
 
     void Start()
     {
@@ -29,12 +30,20 @@ public class HorizontalObjectGravity : MonoBehaviour
 
     public void FlipGravity()
     {
-        // Reverse gravity direction
-        horizontalGravity = -horizontalGravity;
-        _rb.velocity = new Vector2(0,0);
-        // Apply horizontal gravity manually
-        Vector2 horizontalGravityForce = new Vector2(horizontalGravity, 0);
-        _rb.AddForce(horizontalGravityForce);
+	if(flipEnabled)
+	{
+        	// Reverse gravity direction
+        	horizontalGravity = -horizontalGravity;
+        	_rb.velocity = new Vector2(0,0);
+        	// Apply horizontal gravity manually
+        	Vector2 horizontalGravityForce = new Vector2(horizontalGravity, 0);
+        	_rb.AddForce(horizontalGravityForce);
+	}
+    }
+
+    public void FlipEnable()
+    {
+	flipEnabled = true;
     }
 
 }
