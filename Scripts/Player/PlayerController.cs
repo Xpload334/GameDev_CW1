@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -15,43 +17,99 @@ public class PlayerController : MonoBehaviour
     public bool canAct = true;
     public InputAction moveAction; //Action for moving player horizontally
     public InputAction flipGravityAction; //Action for flipping gravity
+    private bool gravityFlipPress;
     public float horizontalInput; //float for horizontal input
     public UnityEvent onFlipGravityEvent;
     [Header("Physics")]
     [SerializeField] private LayerMask groundLayerMask; //What layer to use for ground tiles
+    [SerializeField] private float groundedHeightCheck = 0.05f;
     public Vector2 desiredGravity = new(0, -50f); //Vector for gravity
     [SerializeField] private float flipBoostStrength = 5f; //Boost in velocity to give when flipping
     [SerializeField] private float terminalVelocity = 20f; //Max velocity
     public float playerSpeed = 7.0f;
     [SerializeField] private float movementSmoothing = .05f;
-    private Vector2 m_Velocity;
+    private Vector2 _mVelocity;
     private Vector2 _velocity;
+    //Platform Interactions
+    private bool _isOnPlatform;
+    private bool _ignorePlatformPhysics;
+    private Transform _platformRBody;
+    private Vector3 _lastPlatformPosition;
+    //Coyote time
+    private float airFlipTime = 0.2f;
+    [SerializeField] private float airFlipTimeCounter;
+    //Flip buffer
+    private float flipBufferTime = 0.2f;
+    [SerializeField] private float flipBufferTimeCounter;
 
     void Start ()
     {
         // playerAnimationController = GetComponent<PlayerAnimationController>();
         _rb = GetComponent<Rigidbody2D>();
-        // _collider = GetComponent<Collider2D>();
         screenFader = FindObjectOfType<ScreenFader>();
 
         moveAction.Enable();
         flipGravityAction.Enable();
-        
+
+        flipGravityAction.started += _ =>
+        {
+            OnFlipGravityAction();
+        };
+
+
         //set gravity
         _rb.gravityScale = desiredGravity.y / Physics2D.gravity.y;
         _velocity = Vector3.zero;
     }
 
-    void Update ()
+    void OnFlipGravityAction()
     {
+        Debug.Log("Flip action");
+        flipBufferTimeCounter = flipBufferTime;
+    }
+
+    void FixedUpdate ()
+    {
+        bool isGrounded = IsGrounded();
+        
+        //Platform interactions
+        if (_isOnPlatform)
+        {
+            Vector2 deltaPosition = _platformRBody.position - _lastPlatformPosition;
+            _rb.position += deltaPosition;
+            _lastPlatformPosition = _platformRBody.position;
+        }
+        //Coyote time
+        if (isGrounded)
+        {
+            airFlipTimeCounter = airFlipTime;
+        }
+        else
+        {
+            airFlipTimeCounter -= Time.deltaTime;
+        }
+        //Flip action buffering
+        if (flipGravityAction.triggered) //If action was triggered this frame
+        {
+            Debug.Log("Flip action");
+            flipBufferTimeCounter = flipBufferTime;
+        }
+        else
+        {
+            flipBufferTimeCounter -= Time.deltaTime;
+        }
+        
+        
         //HORIZONTAL
         if(canAct) horizontalInput = moveAction.ReadValue<float>(); //read horizontal movement
         _velocity.x = horizontalInput * playerSpeed; //Set horizontal velocity
 
         //GRAVITY FLIP
-        if (flipGravityAction.triggered && IsGrounded() && canAct) //check if flip gravity triggered, and player is grounded
+        if (flipBufferTimeCounter > 0f && airFlipTimeCounter > 0f && canAct) //check if flip gravity triggered, and player is grounded
         {
             FlipGravity();
+            airFlipTimeCounter = 0f;
+            flipBufferTimeCounter = 0f;
         }
         
         //VERTICAL
@@ -60,15 +118,10 @@ public class PlayerController : MonoBehaviour
         if (_rb.velocity.y > terminalVelocity) _velocity.y = terminalVelocity;
         if (_rb.velocity.y < -terminalVelocity) _velocity.y = -terminalVelocity;
         
-        
-        //MOVEMENT
-        // _rb.velocity = _velocity; //move object
-        
         //Get target velocity
         Vector2 targetVelocity = new Vector2(horizontalInput * playerSpeed, _velocity.y);
         //Smooth damp to target velocity
-        _rb.velocity = Vector2.SmoothDamp(_rb.velocity, targetVelocity, ref m_Velocity, movementSmoothing);
-        
+        _rb.velocity = Vector2.SmoothDamp(_rb.velocity, targetVelocity, ref _mVelocity, movementSmoothing);
         
         //ANIMATIONS
         playerAnimationController.AnimateMovement(horizontalInput);
@@ -77,6 +130,14 @@ public class PlayerController : MonoBehaviour
     //Can only flip gravity when grounded
     void FlipGravity()
     {
+        Debug.Log("Player gravity flip");
+        if (_isOnPlatform)
+        {
+            _isOnPlatform = false;
+            _platformRBody = null;
+            StartCoroutine(BrieflyIgnorePlatformPhysics());
+        }
+        
         //reverse gravity direction
         desiredGravity.y = -desiredGravity.y;
 
@@ -90,13 +151,19 @@ public class PlayerController : MonoBehaviour
         
         //Invoke flip event
         onFlipGravityEvent.Invoke();
-        
     }
     
     public void FlipGravity(bool isUp)
     {
         if((isUp && desiredGravity.y < 0) || (!isUp && desiredGravity.y > 0))
         {
+            if (_isOnPlatform)
+            {
+                _isOnPlatform = false;
+                _platformRBody = null;
+                StartCoroutine(BrieflyIgnorePlatformPhysics());
+            }
+            
             //reverse gravity direction
             desiredGravity.y = -desiredGravity.y;
 
@@ -113,7 +180,7 @@ public class PlayerController : MonoBehaviour
     //Check if player is grounded
     public bool IsGrounded()
     {
-        float extraHeightTest = 0.2f; //Gives you a little bit of room to remain grounded
+        var extraHeightTest = groundedHeightCheck; //Gives you a little bit of room to remain grounded
         var bounds = myCollider.bounds;
         
         //Get ray direction
@@ -144,5 +211,49 @@ public class PlayerController : MonoBehaviour
     {
         SetCanAct(false);
         playerAnimationController.TriggerWinAnim();
+    }
+
+
+    // private void OnCollisionEnter(Collision collision)
+    // {
+    //     if (collision.gameObject.TryGetComponent(out AttachPlayerOnContact _))
+    //     {
+    //         platformRBody = collision.gameObject.GetComponent<Transform>();
+    //         lastPlatformPosition = platformRBody.position;
+    //
+    //         isOnPlatform = true;
+    //     }
+    // }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!_ignorePlatformPhysics && collision.gameObject.TryGetComponent(out AttachPlayerOnContact _))
+        {
+            _platformRBody = collision.gameObject.GetComponent<Transform>();
+            _lastPlatformPosition = _platformRBody.position;
+
+            _isOnPlatform = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!_ignorePlatformPhysics && collision.gameObject.TryGetComponent(out AttachPlayerOnContact _))
+        {
+            _isOnPlatform = false;
+            _platformRBody = null;
+        }
+    }
+
+    /**
+     * Trigger to briefly ignore platform physics when flipping gravity
+     */
+    IEnumerator BrieflyIgnorePlatformPhysics()
+    {
+        // _ignorePlatformPhysics = true;
+        // yield return new WaitForSeconds(0.1f);
+        // _ignorePlatformPhysics = false;
+
+        yield return null;
     }
 }

@@ -40,10 +40,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4004737227499938367}
+  - component: {fileID: 4004737227499938364}
   - component: {fileID: 4004737227499938365}
   - component: {fileID: 4004737227499938360}
-  - component: {fileID: 4004737227499938364}
   - component: {fileID: 5967841863734322658}
+  - component: {fileID: 6874371942251033399}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -68,43 +69,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &4004737227499938365
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4004737227499938339}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 20da5e28f8d56c14fb16ceea3553d9fd, type: 2}
-  m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!70 &4004737227499938360
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4004737227499938339}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
 --- !u!114 &4004737227499938364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,8 +144,8 @@ MonoBehaviour:
     m_Flags: 0
   flipGravityAction:
     m_Name: Flip Gravity
-    m_Type: 0
-    m_ExpectedControlType: 
+    m_Type: 1
+    m_ExpectedControlType: Button
     m_Id: 7dfac07c-3a82-4301-a595-a4c0a5b8e886
     m_Processors: 
     m_Interactions: 
@@ -210,11 +174,51 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  groundedHeightCheck: 0.25
   desiredGravity: {x: 0, y: -50}
   flipBoostStrength: 2
   terminalVelocity: 15
   playerSpeed: 8
   movementSmoothing: 0.05
+  airFlipTimeCounter: 0
+  flipBufferTimeCounter: 0
+--- !u!50 &4004737227499938365
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4004737227499938339}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 6200000, guid: 20da5e28f8d56c14fb16ceea3553d9fd, type: 2}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!70 &4004737227499938360
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4004737227499938339}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 20da5e28f8d56c14fb16ceea3553d9fd, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
 --- !u!114 &5967841863734322658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,6 +233,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   deathAnim: {fileID: 6000782161222886495, guid: cca59ed4e3ebcae4daddc4c4edbae5b7, type: 3}
+--- !u!70 &6874371942251033399
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4004737227499938339}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 20da5e28f8d56c14fb16ceea3553d9fd, type: 2}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.8, y: 1.8}
+  m_Direction: 0
 --- !u!1001 &4004737226028077962
 PrefabInstance:
   m_ObjectHideFlags: 0

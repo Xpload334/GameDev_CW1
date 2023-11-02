@@ -4,47 +4,54 @@ using UnityEngine;
 
 public class PatrolPoints : MonoBehaviour
 {
-    public List<Vector3> patrolPoints;
+    // private Rigidbody2D rb;
+    public List<Transform> patrolPointTransforms;
+    private List<Vector3> patrolPoints = new List<Vector3>();
 
     public int objectivePointIndex;
-    public int startPointIndex = 0;
+    public int startPointIndex;
 
     [SerializeField] private Vector3 objectivePoint;
 
-    public bool ShouldPatrol = true;
-    public bool ShouldMove = true;
+    public bool shouldPatrol = true;
+    public bool shouldMove = true;
     public float speed = 5f;
     public float waitAtEachPoint = 1f;
     [SerializeField] private float thresholdDistance = 0.01f;
     // Start is called before the first frame update
     void Start()
     {
-        if (patrolPoints.Count == 0)
+        //Use transforms list, in order
+        if (patrolPointTransforms.Count != 0)
         {
-            foreach (Transform child in transform)
+            foreach (var pointTransform in patrolPointTransforms)
             {
-                patrolPoints.Add(child.position);
+                patrolPoints.Add(pointTransform.position);
             }
-            // patrolPoints = gameObject.GetComponentsInChildren<Transform>();
-        }
+        } 
+        // else if (patrolPoints.Count == 0)
+        // {
+        //     foreach (Transform child in transform)
+        //     {
+        //         patrolPoints.Add(child.position);
+        //     }
+        //     // patrolPoints = gameObject.GetComponentsInChildren<Transform>();
+        // }
 
         objectivePointIndex = startPointIndex; //Set to start point
         transform.position = patrolPoints[startPointIndex];
         
         objectivePointIndex = NextPointIndex(); //Set objective to next point
         objectivePoint = patrolPoints[objectivePointIndex];
-        
+
+        // rb = GetComponent<Rigidbody2D>();
         
         StartCoroutine(PatrolAroundPoints());
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    int NextPointIndex()
+    private int NextPointIndex()
     {
         int i = objectivePointIndex + 1;
         if (i >= patrolPoints.Count)
@@ -55,9 +62,9 @@ public class PatrolPoints : MonoBehaviour
         return i;
     }
 
-    IEnumerator PatrolAroundPoints()
+    private IEnumerator PatrolAroundPoints()
     {
-        while (ShouldPatrol)
+        while (shouldPatrol)
         {
             //If reached objective point
             if (Vector2.Distance(transform.position, objectivePoint) < thresholdDistance)
@@ -72,10 +79,11 @@ public class PatrolPoints : MonoBehaviour
             
             
             //Move towards target point
-            if (ShouldMove)
+            if (shouldMove)
             {
                 var step = speed * Time.deltaTime;
                 transform.position = Vector2.MoveTowards(transform.position, objectivePoint, step);
+                // rb.MovePosition(Vector2.MoveTowards(transform.position, objectivePoint, step));
             }
 
             yield return null; //Wait a frame

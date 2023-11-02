@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,12 @@ using UnityEngine;
 public class VerticalObjectGravity : MonoBehaviour
 {
     private Rigidbody2D _rb;
-    [SerializeField] private LayerMask groundLayerMask; //What layer to use for ground tiles
+    // [SerializeField] private LayerMask groundLayerMask; //What layer to use for ground tiles
     public Vector2 desiredGravity = new(0, -50f); //Vector for gravity
     [SerializeField] private float flipBoostStrength = 5f; //Boost in velocity to give when flipping
     [SerializeField] private float terminalVelocity = 20f; //Max velocity
-    public float playerSpeed = 7.0f;
-    [SerializeField] private float movementSmoothing = .05f;
+    // public float playerSpeed = 7.0f;
+    // [SerializeField] private float movementSmoothing = .05f;
     private Vector2 m_Velocity;
     private Vector2 _velocity;
     public bool invert;
@@ -21,6 +22,13 @@ public class VerticalObjectGravity : MonoBehaviour
         if (invert) desiredGravity.y = -desiredGravity.y;
         _rb.gravityScale = desiredGravity.y / Physics2D.gravity.y;
         _velocity = Vector3.zero;
+    }
+
+    private void Update()
+    {
+        //Terminal velocity
+        if (_rb.velocity.y > terminalVelocity) _velocity.y = terminalVelocity;
+        if (_rb.velocity.y < -terminalVelocity) _velocity.y = -terminalVelocity;
     }
 
     //Can only flip gravity when grounded
