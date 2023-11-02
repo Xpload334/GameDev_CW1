@@ -15,7 +15,7 @@ public class ScreenFader : MonoBehaviour
     public Image fadeImage;
     public float fadeOutDelay = 0.5f;
     public float fadeInDelay = 0.5f;
-    public float fadeSpeed = 1.0f;
+    public float fadeSpeed = 1f;
 
     private void Start()
     {
