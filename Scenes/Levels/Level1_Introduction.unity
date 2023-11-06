@@ -4908,7 +4908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7165596190366168037, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_PathPosition
-      value: -113.2
+      value: 0.334134
       objectReference: {fileID: 0}
     - target: {fileID: 7165596191766042315, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_Waypoints.Array.size
@@ -5308,6 +5308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1299573262}
+  - component: {fileID: 1299573263}
   m_Layer: 0
   m_Name: PlayerControlIndicator
   m_TagString: Untagged
@@ -5323,16 +5324,38 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299573261}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1951657992}
   - {fileID: 1372044047}
   - {fileID: 282062414}
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1793159871}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1299573263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299573261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4703e373a18fb141874b25b7bdb9e97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerController: {fileID: 1779341190}
+  keyLeftImage: {fileID: 1951657993}
+  keyRightImage: {fileID: 1372044048}
+  keyFlipImage: {fileID: 282062415}
+  keyLeft: {fileID: 63009233, guid: 84fa46607c6e02547aae5f3ad445015b, type: 3}
+  keyLeftPressed: {fileID: 1435239001, guid: 84fa46607c6e02547aae5f3ad445015b, type: 3}
+  keyRight: {fileID: 839599872, guid: 84fa46607c6e02547aae5f3ad445015b, type: 3}
+  keyRightPressed: {fileID: -145960510, guid: 84fa46607c6e02547aae5f3ad445015b, type: 3}
+  keySpace: {fileID: -2047420585, guid: 84fa46607c6e02547aae5f3ad445015b, type: 3}
+  keySpacePressed: {fileID: 107280830, guid: 84fa46607c6e02547aae5f3ad445015b, type: 3}
 --- !u!1 &1372044046
 GameObject:
   m_ObjectHideFlags: 0
@@ -5771,6 +5794,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee382f18e24326d4da28cb64d3155977, type: 3}
+--- !u!114 &1779341190 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4004737227499938364, guid: ee382f18e24326d4da28cb64d3155977, type: 3}
+  m_PrefabInstance: {fileID: 1779341189}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2b1eb83aa150134bb691a082f8dc078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1793159871 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4004737227499938367, guid: ee382f18e24326d4da28cb64d3155977, type: 3}

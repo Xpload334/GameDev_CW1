@@ -16,6 +16,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: 7c68738904bec3a438605170fd856ff5, type: 2}
     - target: {fileID: 7023448230758163049, guid: 8806b53848075694c89cd122d5395b62, type: 3}
+      propertyPath: keyIndicator
+      value: 
+      objectReference: {fileID: 9205671227946079992, guid: 88c6dd58d8066b841b70344e6026d79e, type: 3}
+    - target: {fileID: 7023448230758163049, guid: 8806b53848075694c89cd122d5395b62, type: 3}
       propertyPath: onCollect.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -81,7 +85,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7023448230758163052, guid: 8806b53848075694c89cd122d5395b62, type: 3}
       propertyPath: m_Name
-      value: Green Key
+      value: Green Key Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8806b53848075694c89cd122d5395b62, type: 3}
