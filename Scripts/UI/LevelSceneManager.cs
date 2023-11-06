@@ -125,4 +125,12 @@ public class LevelSceneManager : MonoBehaviour
     //     // yield return new WaitForSeconds(deathFadeDelay);
     //     _screenFader.PlayerDeath();
     // }
+
+    public void SetLevelsUnlocked(int newVal)
+    {
+        PlayerPrefs.SetInt("levelsUnlocked", newVal);
+        LevelsUnlocked = PlayerPrefs.GetInt("levelsUnlocked", 1);
+        
+        Debug.Log("Force set LevelsUnlocked to "+LevelsUnlocked);
+    }
 }
