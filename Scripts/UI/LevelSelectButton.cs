@@ -20,8 +20,6 @@ public class LevelSelectButton : MonoBehaviour
         
         //Set text
         tmpText.text = levelNum.ToString();
-        
-        
         _button.interactable = levelsUnlocked >= levelNum; //Enable interaction if levels beaten
     }
     
@@ -32,6 +30,8 @@ public class LevelSelectButton : MonoBehaviour
 
     private void HandleLevelsUnlockedChange(int newVal)
     {
+        int levelsUnlocked = _levelSceneManager.LevelsUnlocked;
         _button.interactable = newVal >= levelNum; //Enable interaction if levels beaten
+        _button.interactable = levelsUnlocked >= levelNum; //Enable interaction if levels beaten
     }
 }
