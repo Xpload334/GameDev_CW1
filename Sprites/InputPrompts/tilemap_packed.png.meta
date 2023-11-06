@@ -502,6 +502,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: key_blank
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 272
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b97db1757a8bf74eb127654b7892bee
+      internalID: 1395870351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: key_blank_down
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 144
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9341dd46b576b0f42888b39b9a1eaf6a
+      internalID: -983168771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -515,6 +557,8 @@ TextureImporter:
     nameFileIdTable:
       key_pause: -2051917678
       spacebar: -2047420585
+      key_blank: 1395870351
+      key_blank_down: -983168771
       key_left: 63009233
       key_d: 2087024294
       arrow_leftright: 3158000

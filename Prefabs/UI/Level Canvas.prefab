@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -32, y: -32}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5101878089984714316
 CanvasRenderer:
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '#10 - A Smash Hit'
+  m_text: '#2 - Open Sesame'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cf58e4c373eed0e4c96254e309254915, type: 2}
   m_sharedMaterial: {fileID: -8619845515068736831, guid: cf58e4c373eed0e4c96254e309254915, type: 2}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 131.55
+  m_fontSize: 115.55
   m_fontSizeBase: 163.02
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -279,6 +279,8 @@ GameObject:
   - component: {fileID: 5101878091055746618}
   - component: {fileID: 5101878091055746616}
   - component: {fileID: 5101878091055746619}
+  - component: {fileID: 64865857}
+  - component: {fileID: 64865865}
   m_Layer: 5
   m_Name: Level Name Panel
   m_TagString: Untagged
@@ -345,6 +347,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &64865857
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5101878091055747013}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &64865865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5101878091055747013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 951f3e007631c4c49bae259e283a38f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiElement: {fileID: 64865857}
+  shouldFadeOut: 1
+  waitBeforeFadeIn: 1
+  waitBeforeFadeOut: 3
 --- !u!1 &5101878091296757848
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,7 +411,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 200}
+  m_SizeDelta: {x: 0, y: 150}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &5101878091621307840
 GameObject:
@@ -392,8 +422,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5101878091621307841}
+  - component: {fileID: 380808412}
+  - component: {fileID: 380808411}
   m_Layer: 5
-  m_Name: LevelSelect
+  m_Name: ButtonTopRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -417,9 +449,37 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
-  m_SizeDelta: {x: 200, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 150, y: 0}
   m_Pivot: {x: 1, y: 0.5}
+--- !u!225 &380808412
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5101878091621307840}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &380808411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5101878091621307840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 951f3e007631c4c49bae259e283a38f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiElement: {fileID: 380808412}
+  shouldFadeOut: 0
+  waitBeforeFadeIn: 1
+  waitBeforeFadeOut: 3
 --- !u!1 &5101878091867457946
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +539,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &5101878091867457944
 MonoBehaviour:
