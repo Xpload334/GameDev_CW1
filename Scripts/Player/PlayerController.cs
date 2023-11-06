@@ -213,19 +213,19 @@ public class PlayerController : MonoBehaviour
         playerAnimationController.TriggerWinAnim();
     }
 
-
-    // private void OnCollisionEnter(Collision collision)
+    
+    // private void OnTriggerEnter2D(Collider2D collision)
     // {
-    //     if (collision.gameObject.TryGetComponent(out AttachPlayerOnContact _))
+    //     if (!_ignorePlatformPhysics && collision.gameObject.TryGetComponent(out AttachPlayerOnContact _))
     //     {
-    //         platformRBody = collision.gameObject.GetComponent<Transform>();
-    //         lastPlatformPosition = platformRBody.position;
+    //         _platformRBody = collision.gameObject.GetComponent<Transform>();
+    //         _lastPlatformPosition = _platformRBody.position;
     //
-    //         isOnPlatform = true;
+    //         _isOnPlatform = true;
     //     }
     // }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (!_ignorePlatformPhysics && collision.gameObject.TryGetComponent(out AttachPlayerOnContact _))
         {
@@ -236,7 +236,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnCollisionExit(Collision collision)
     {
         if (!_ignorePlatformPhysics && collision.gameObject.TryGetComponent(out AttachPlayerOnContact _))
         {
@@ -244,6 +244,15 @@ public class PlayerController : MonoBehaviour
             _platformRBody = null;
         }
     }
+
+    // private void OnTriggerExit2D(Collider2D collision)
+    // {
+    //     if (!_ignorePlatformPhysics && collision.gameObject.TryGetComponent(out AttachPlayerOnContact _))
+    //     {
+    //         _isOnPlatform = false;
+    //         _platformRBody = null;
+    //     }
+    // }
 
     /**
      * Trigger to briefly ignore platform physics when flipping gravity
