@@ -38,12 +38,12 @@ public class ControlIndicator : MonoBehaviour
         
         flipGravityAction.started += _ =>
         {
-            
+            GravityActionPressed();
         };
 
         flipGravityAction.canceled += _ =>
         {
-
+            GravityActionReleased();
         };
     }
 

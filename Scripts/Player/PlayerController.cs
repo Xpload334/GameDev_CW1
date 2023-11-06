@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     //Platform Interactions
     private bool _isOnPlatform;
     private bool _ignorePlatformPhysics;
-    private Transform _platformRBody;
+    public Transform platformRBody;
     private Vector3 _lastPlatformPosition;
     //Coyote time
     private float airFlipTime = 0.2f;
@@ -75,9 +75,9 @@ public class PlayerController : MonoBehaviour
         //Platform interactions
         if (_isOnPlatform)
         {
-            Vector2 deltaPosition = _platformRBody.position - _lastPlatformPosition;
+            Vector2 deltaPosition = platformRBody.position - _lastPlatformPosition;
             _rb.position += deltaPosition;
-            _lastPlatformPosition = _platformRBody.position;
+            _lastPlatformPosition = platformRBody.position;
         }
         //Coyote time
         if (isGrounded)
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
         if (_isOnPlatform)
         {
             _isOnPlatform = false;
-            _platformRBody = null;
+            platformRBody = null;
             StartCoroutine(BrieflyIgnorePlatformPhysics());
         }
         
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
             if (_isOnPlatform)
             {
                 _isOnPlatform = false;
-                _platformRBody = null;
+                platformRBody = null;
                 StartCoroutine(BrieflyIgnorePlatformPhysics());
             }
             
@@ -218,39 +218,53 @@ public class PlayerController : MonoBehaviour
     // {
     //     if (!_ignorePlatformPhysics && collision.gameObject.TryGetComponent(out AttachPlayerOnContact _))
     //     {
+    //         platformRBody = collision.gameObject.GetComponent<Transform>();
+    //         _lastPlatformPosition = platformRBody.position;
+    //
+    //         _isOnPlatform = true;
+    //     }
+    // }
+
+    public void SetCurrentPlatform(Transform pTransform)
+    {
+        platformRBody = pTransform;
+        _lastPlatformPosition = platformRBody.position;
+    
+        _isOnPlatform = true;
+    }
+
+    public void LeavePlatform()
+    {
+        _isOnPlatform = false;
+        platformRBody = null;
+    }
+
+    // private void OnCollisionEnter(Collision collision)
+    // {
+    //     if (!_ignorePlatformPhysics && collision.gameObject.TryGetComponent(out AttachPlayerOnContact _))
+    //     {
     //         _platformRBody = collision.gameObject.GetComponent<Transform>();
     //         _lastPlatformPosition = _platformRBody.position;
     //
     //         _isOnPlatform = true;
     //     }
     // }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (!_ignorePlatformPhysics && collision.gameObject.TryGetComponent(out AttachPlayerOnContact _))
-        {
-            _platformRBody = collision.gameObject.GetComponent<Transform>();
-            _lastPlatformPosition = _platformRBody.position;
-
-            _isOnPlatform = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (!_ignorePlatformPhysics && collision.gameObject.TryGetComponent(out AttachPlayerOnContact _))
-        {
-            _isOnPlatform = false;
-            _platformRBody = null;
-        }
-    }
+    //
+    // private void OnCollisionExit(Collision collision)
+    // {
+    //     if (!_ignorePlatformPhysics && collision.gameObject.TryGetComponent(out AttachPlayerOnContact _))
+    //     {
+    //         _isOnPlatform = false;
+    //         _platformRBody = null;
+    //     }
+    // }
 
     // private void OnTriggerExit2D(Collider2D collision)
     // {
     //     if (!_ignorePlatformPhysics && collision.gameObject.TryGetComponent(out AttachPlayerOnContact _))
     //     {
     //         _isOnPlatform = false;
-    //         _platformRBody = null;
+    //         platformRBody = null;
     //     }
     // }
 
