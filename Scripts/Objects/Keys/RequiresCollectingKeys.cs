@@ -34,4 +34,10 @@ public class RequiresCollectingKeys : MonoBehaviour
             onKeysCollected.Invoke();
         }
     }
+
+    public void ResetCount()
+    {
+        currentKeysCollected = 0;
+        _isCompleted = false;
+    }
 }
