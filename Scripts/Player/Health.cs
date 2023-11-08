@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] private PlayerSounds _playerSounds;
     private LevelSceneManager _levelSceneManager;
     
     public int health;
@@ -13,6 +14,7 @@ public class Health : MonoBehaviour
     private void Start()
     {
         _levelSceneManager = FindObjectOfType<LevelSceneManager>();
+        _playerSounds = FindObjectOfType<PlayerSounds>();
     }
 
     public void TakeDamage(int h)
@@ -27,6 +29,12 @@ public class Health : MonoBehaviour
     void Die()
     {
         Instantiate(deathAnim, transform.position, Quaternion.identity);
+        if (_playerSounds != null)
+        {
+            _playerSounds.PlayDeathSound();
+        }
+        
+        
         gameObject.SetActive(false);
         
         

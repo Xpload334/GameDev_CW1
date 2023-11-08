@@ -47,6 +47,17 @@ public class Key : MonoBehaviour
             iKeyIndicator.StartMoveOverSeconds(keyObject.transform, 0.5f);
         }
         
+        //Play collect sound
+        try
+        {
+            PlayerSounds sounds = FindObjectOfType<PlayerSounds>();
+            sounds.PlayCollectSound();
+        }
+        catch
+        {
+            // ignored
+        }
+
         gameObject.SetActive(false);
     }
 }

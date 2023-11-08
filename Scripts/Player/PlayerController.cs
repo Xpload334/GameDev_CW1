@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [Header("Connections")]
     [SerializeField] private ScreenFader screenFader; 
     [SerializeField] private PlayerAnimationController playerAnimationController;
+
+    [SerializeField] private PlayerSounds _playerSounds;
     private Rigidbody2D _rb;
     [SerializeField] private Collider2D myCollider;
     [Header("Actions")] 
@@ -45,6 +47,7 @@ public class PlayerController : MonoBehaviour
     void Start ()
     {
         // playerAnimationController = GetComponent<PlayerAnimationController>();
+        _playerSounds = FindObjectOfType<PlayerSounds>();
         _rb = GetComponent<Rigidbody2D>();
         screenFader = FindObjectOfType<ScreenFader>();
 
@@ -64,8 +67,10 @@ public class PlayerController : MonoBehaviour
 
     void OnFlipGravityAction()
     {
-        Debug.Log("Flip action");
+        // Debug.Log("Flip action");
         flipBufferTimeCounter = flipBufferTime;
+        
+        if(_playerSounds != null) _playerSounds.PlayFlipSound();
     }
 
     void FixedUpdate ()
@@ -98,7 +103,6 @@ public class PlayerController : MonoBehaviour
         {
             flipBufferTimeCounter -= Time.deltaTime;
         }
-        
         
         //HORIZONTAL
         if(canAct) horizontalInput = moveAction.ReadValue<float>(); //read horizontal movement
@@ -211,6 +215,7 @@ public class PlayerController : MonoBehaviour
     {
         SetCanAct(false);
         playerAnimationController.TriggerWinAnim();
+        if(_playerSounds != null) _playerSounds.PlayWinSound();
     }
 
     
