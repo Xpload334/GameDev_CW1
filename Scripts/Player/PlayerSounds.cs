@@ -17,12 +17,11 @@ public class PlayerSounds : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip footstepSound;
 
-    private float horizontalInput;
-
     private bool isGrounded;
     private bool isLastGrounded = true;
 
-    private bool footsteps = false;
+    private bool makeFootsteps;
+    private bool isFootstepsLoopActive;
 
     [SerializeField] private float footstepsDelay = 0.6f;
     // Start is called before the first frame update
@@ -39,11 +38,23 @@ public class PlayerSounds : MonoBehaviour
         StartCoroutine(FootstepsLoop());
 
     }
-
     // Update is called once per frame
-    void Update()
+
+    void FixedUpdate()
     {
         isGrounded = playerController.IsGrounded();
+
+        //Make footsteps
+        if (isGrounded && playerController.horizontalInput != 0)
+        {
+            makeFootsteps = true;
+            if (!isFootstepsLoopActive) StartCoroutine(FootstepsLoop());
+        }
+        else
+        {
+            makeFootsteps = false;
+        }
+        
         
         //Landing
         if (!isLastGrounded && isGrounded)
@@ -85,14 +96,12 @@ public class PlayerSounds : MonoBehaviour
 
     IEnumerator FootstepsLoop()
     {
-        while (true)
+        isFootstepsLoopActive = true;
+        while (makeFootsteps)
         {
-            if (playerController.horizontalInput != 0 && isGrounded)
-            {
-                footstepsSource.PlayOneShot(footstepSound);
-            }
-
+            footstepsSource.PlayOneShot(footstepSound);
             yield return new WaitForSeconds(footstepsDelay);
         }
+        isFootstepsLoopActive = false;
     }
 }

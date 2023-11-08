@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private PlayerSounds _playerSounds;
     private Rigidbody2D _rb;
-    [SerializeField] private Collider2D myCollider;
+    [SerializeField] private Collider2D playerCollider;
     [Header("Actions")] 
     public bool canAct = true;
     public InputAction moveAction; //Action for moving player horizontally
@@ -69,8 +69,6 @@ public class PlayerController : MonoBehaviour
     {
         // Debug.Log("Flip action");
         flipBufferTimeCounter = flipBufferTime;
-        
-        if(_playerSounds != null) _playerSounds.PlayFlipSound();
     }
 
     void FixedUpdate ()
@@ -155,6 +153,9 @@ public class PlayerController : MonoBehaviour
         
         //Invoke flip event
         onFlipGravityEvent.Invoke();
+        
+        //Play sound effect
+        if(_playerSounds != null) _playerSounds.PlayFlipSound();
     }
     
     public void FlipGravity(bool isUp)
@@ -185,7 +186,7 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded()
     {
         var extraHeightTest = groundedHeightCheck; //Gives you a little bit of room to remain grounded
-        var bounds = myCollider.bounds;
+        var bounds = playerCollider.bounds;
         
         //Get ray direction
         var rayDirection = Vector2.zero;
