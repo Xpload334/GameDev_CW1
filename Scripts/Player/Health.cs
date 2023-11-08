@@ -7,7 +7,8 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private PlayerSounds _playerSounds;
     private LevelSceneManager _levelSceneManager;
-    
+
+    private bool isDead;
     public int health;
     public GameObject deathAnim;
 
@@ -20,7 +21,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(int h)
     {
         health -= h;
-        if (health <= 0)
+        if (health <= 0 && !isDead)
         {
             Die();
         }
@@ -28,15 +29,20 @@ public class Health : MonoBehaviour
 
     void Die()
     {
+        isDead = true;
         Instantiate(deathAnim, transform.position, Quaternion.identity);
         if (_playerSounds != null)
         {
             _playerSounds.PlayDeathSound();
         }
         
+        //Update player prefs
+        int deathCount = PlayerPrefs.GetInt("playerDeaths", 0);
+        PlayerPrefs.SetInt("playerDeaths", deathCount+1);
+        Debug.Log("Died "+deathCount+1+" times");
+        
         
         gameObject.SetActive(false);
-        
         
         //Reload current scene if player dies
         _levelSceneManager.PlayerDeath();

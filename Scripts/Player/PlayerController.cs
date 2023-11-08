@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerAnimationController playerAnimationController;
 
     [SerializeField] private PlayerSounds _playerSounds;
-    private Rigidbody2D _rb;
+    public Rigidbody2D rb;
     [SerializeField] private Collider2D playerCollider;
     [Header("Actions")] 
     public bool canAct = true;
@@ -21,9 +21,10 @@ public class PlayerController : MonoBehaviour
     public InputAction flipGravityAction; //Action for flipping gravity
     private bool gravityFlipPress;
     public float horizontalInput; //float for horizontal input
+    public float lastHorizontalInput;
     public UnityEvent onFlipGravityEvent;
     [Header("Physics")]
-    [SerializeField] private LayerMask groundLayerMask; //What layer to use for ground tiles
+    public LayerMask groundLayerMask; //What layer to use for ground tiles
     [SerializeField] private float groundedHeightCheck = 0.05f;
     public Vector2 desiredGravity = new(0, -50f); //Vector for gravity
     [SerializeField] private float flipBoostStrength = 5f; //Boost in velocity to give when flipping
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         // playerAnimationController = GetComponent<PlayerAnimationController>();
         _playerSounds = FindObjectOfType<PlayerSounds>();
-        _rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         screenFader = FindObjectOfType<ScreenFader>();
 
         moveAction.Enable();
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
 
         //set gravity
-        _rb.gravityScale = desiredGravity.y / Physics2D.gravity.y;
+        rb.gravityScale = desiredGravity.y / Physics2D.gravity.y;
         _velocity = Vector3.zero;
     }
 
@@ -79,7 +80,7 @@ public class PlayerController : MonoBehaviour
         if (_isOnPlatform)
         {
             Vector2 deltaPosition = platformRBody.position - _lastPlatformPosition;
-            _rb.position += deltaPosition;
+            rb.position += deltaPosition;
             _lastPlatformPosition = platformRBody.position;
         }
         //Coyote time
@@ -106,6 +107,8 @@ public class PlayerController : MonoBehaviour
         if(canAct) horizontalInput = moveAction.ReadValue<float>(); //read horizontal movement
         _velocity.x = horizontalInput * playerSpeed; //Set horizontal velocity
 
+        if (horizontalInput != 0) lastHorizontalInput = horizontalInput; //Set last horizontal input
+
         //GRAVITY FLIP
         if (flipBufferTimeCounter > 0f && airFlipTimeCounter > 0f && canAct) //check if flip gravity triggered, and player is grounded
         {
@@ -115,15 +118,15 @@ public class PlayerController : MonoBehaviour
         }
         
         //VERTICAL
-        _velocity.y = _rb.velocity.y; //keep y velocity consistent
+        _velocity.y = rb.velocity.y; //keep y velocity consistent
         //Terminal velocity
-        if (_rb.velocity.y > terminalVelocity) _velocity.y = terminalVelocity;
-        if (_rb.velocity.y < -terminalVelocity) _velocity.y = -terminalVelocity;
+        if (rb.velocity.y > terminalVelocity) _velocity.y = terminalVelocity;
+        if (rb.velocity.y < -terminalVelocity) _velocity.y = -terminalVelocity;
         
         //Get target velocity
         Vector2 targetVelocity = new Vector2(horizontalInput * playerSpeed, _velocity.y);
         //Smooth damp to target velocity
-        _rb.velocity = Vector2.SmoothDamp(_rb.velocity, targetVelocity, ref _mVelocity, movementSmoothing);
+        rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref _mVelocity, movementSmoothing);
         
         //ANIMATIONS
         playerAnimationController.AnimateMovement(horizontalInput);
@@ -143,7 +146,7 @@ public class PlayerController : MonoBehaviour
         //reverse gravity direction
         desiredGravity.y = -desiredGravity.y;
 
-        _rb.gravityScale = desiredGravity.y / Physics2D.gravity.y; //Set rigidbody gravity scale instead
+        rb.gravityScale = desiredGravity.y / Physics2D.gravity.y; //Set rigidbody gravity scale instead
         
         //Provide small boost
         _velocity.y = desiredGravity.normalized.y * flipBoostStrength;
@@ -172,7 +175,7 @@ public class PlayerController : MonoBehaviour
             //reverse gravity direction
             desiredGravity.y = -desiredGravity.y;
 
-            _rb.gravityScale = desiredGravity.y / Physics2D.gravity.y; //Set rigidbody gravity scale instead
+            rb.gravityScale = desiredGravity.y / Physics2D.gravity.y; //Set rigidbody gravity scale instead
 
             //Provide small boost
             _velocity.y = desiredGravity.normalized.y * flipBoostStrength;
@@ -190,7 +193,7 @@ public class PlayerController : MonoBehaviour
         
         //Get ray direction
         var rayDirection = Vector2.zero;
-        if (_rb.gravityScale > 0) //CHANGED TO USE GRAVITY SCALE
+        if (rb.gravityScale > 0) //CHANGED TO USE GRAVITY SCALE
         {
             rayDirection.y = -1;
         }
