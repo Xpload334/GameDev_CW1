@@ -48,18 +48,47 @@ public class LevelSceneManager : MonoBehaviour
         currentScene = SceneManager.GetActiveScene().name;
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-        if (currentSceneIndex == 0)
+        if (currentSceneIndex == 0 || currentScene.Equals("LevelSelect"))
         {
+            try
+            {
+                FindObjectOfType<MusicManager>().PlayLevelSelect();
+            }
+            catch
+            {
+                // ignored
+            }
+
             if (LevelsUnlocked == 0)
             {
                 Debug.Log("Level "+PlayerPrefs.GetInt("levelsUnlocked")+" has been unlocked");
                 PlayerPrefs.SetInt("levelsUnlocked", 1);
             }
             
-            LevelsUnlocked = PlayerPrefs.GetInt("levelsUnlocked", 1);
+            // LevelsUnlocked = PlayerPrefs.GetInt("levelsUnlocked", 1);
         }
-        
-        
+        else if (currentScene.Equals("EndScreen"))
+        {
+            try
+            {
+                FindObjectOfType<MusicManager>().PlayEndScreen();
+            }
+            catch
+            {
+                // ignored
+            }
+        }
+        else
+        {
+            try
+            {
+                FindObjectOfType<MusicManager>().PlayLevelNormal();
+            }
+            catch
+            {
+                // ignored
+            }
+        }
         
         FadeIn();
     }

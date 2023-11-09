@@ -39,7 +39,7 @@ public class Health : MonoBehaviour
         //Update player prefs
         int deathCount = PlayerPrefs.GetInt("playerDeaths", 0);
         PlayerPrefs.SetInt("playerDeaths", deathCount+1);
-        Debug.Log("Died "+deathCount+1+" times");
+        Debug.Log("Died "+(deathCount+1)+" times");
         
         
         gameObject.SetActive(false);
