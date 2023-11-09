@@ -24,5 +24,7 @@ Make sure you download the following packages in order to have this work in the 
 - Rotating Crystals: https://opengameart.org/content/rotating-crystal-animation-8-step
 - Sci-fi door: https://opengameart.org/content/scifi-door-sprite
 ### Music
-- 
+- Elevator to Nowhere, Aldous Ichnite, (Free Music Archive) (CC BY-NC)
+- Paper Trails and Pixles, Aldous Ichnite, (Free Music Archive) (CC BY-NC)
+- Welcome to the Cubicle Abyss, Aldous Ichnite, (Free Music Archive) (CC BY-NC)
 
