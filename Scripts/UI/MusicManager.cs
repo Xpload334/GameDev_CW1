@@ -22,6 +22,9 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private string currentScene;
     
     private static MusicManager _instance;
+    private bool _shouldPlay;
+    [SerializeField] private int levelSelectSceneIndex = 0;
+    [SerializeField] private int endScreenSceneIndex = 11;
     private void Awake()
     {
         // MusicManager[] musicObjs = FindObjectsOfType<MusicManager>();
@@ -30,9 +33,11 @@ public class MusicManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(gameObject);
             if(_audioSource == null) _audioSource = GetComponent<AudioSource>();
+            _shouldPlay = true;
         }
         else
         {
+            _shouldPlay = false;
             Destroy(gameObject);
         }
         // if (musicObjs.Length > 1)
@@ -45,7 +50,26 @@ public class MusicManager : MonoBehaviour
         //     // currentlyPlaying = _audioSource.clip;
         // }
     }
-    
+
+    private void Start()
+    {
+        if (!_shouldPlay) return;
+        
+        var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currentSceneIndex == levelSelectSceneIndex)
+        {
+            PlayLevelSelect();
+        }
+        else if(currentSceneIndex == endScreenSceneIndex)
+        {
+            PlayEndScreen();
+        }
+        else
+        {
+            PlayLevelNormal();
+        }
+    }
+
     public void PlayLevelSelect()
     {
         if (currentlyPlaying.Equals(levelSelectTrack)) return;

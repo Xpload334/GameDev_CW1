@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ScreenFader : MonoBehaviour
 {
-    private bool _isLoading;
+    public bool isLoading;
     [Header("Events")]
     public UnityEvent afterPlayerDeath; //Call when the player dies
     public UnityEvent afterLevelComplete; //Call when you want to switch to the next level
@@ -25,22 +25,38 @@ public class ScreenFader : MonoBehaviour
     
     public void PlayerDeath()
     {
-        if(!_isLoading) StartCoroutine(FadeToBlack(afterPlayerDeath));
+        if (!isLoading)
+        {
+            isLoading = true;
+            StartCoroutine(FadeToBlack(afterPlayerDeath));
+        }
     }
 
     public void LevelComplete()
     {
-        if(!_isLoading) StartCoroutine(FadeToBlack(afterLevelComplete));
+        if (!isLoading)
+        {
+            isLoading = true;
+            StartCoroutine(FadeToBlack(afterLevelComplete));
+        }
     }
     
     public void StartFadeToBlack(Action afterFadeEvent)
     {
-        if(!_isLoading) StartCoroutine(FadeToBlack(afterFadeEvent));
+        if (!isLoading)
+        {
+            isLoading = true;
+            StartCoroutine(FadeToBlack(afterFadeEvent));
+        }
     }
 
     public void FadeFromBlack()
     {
-        if(!_isLoading) StartCoroutine(FadeFromBlack(null));
+        if (!isLoading)
+        {
+            isLoading = true;
+            StartCoroutine(FadeFromBlack(null));
+        }
     }
 
     /**
@@ -48,7 +64,7 @@ public class ScreenFader : MonoBehaviour
      */
     private IEnumerator FadeToBlack(UnityEvent eventToTrigger)
     {
-        _isLoading = true;
+        // _isLoading = true;
         fadeImage.gameObject.SetActive(true);
         yield return new WaitForSeconds(fadeOutDelay);
         float alpha = 0;
@@ -62,14 +78,14 @@ public class ScreenFader : MonoBehaviour
 
         // Invoke finishing event
         eventToTrigger?.Invoke();
-        _isLoading = false;
+        isLoading = false;
     }
     /**
      * Fade to black, then trigger the event
      */
     private IEnumerator FadeToBlack(Action actionToTrigger)
     {
-        _isLoading = true;
+        // _isLoading = true;
         fadeImage.gameObject.SetActive(true);
         yield return new WaitForSeconds(fadeOutDelay);
         float alpha = 0;
@@ -83,7 +99,7 @@ public class ScreenFader : MonoBehaviour
 
         // Invoke finishing event
         actionToTrigger?.Invoke();
-        _isLoading = false;
+        isLoading = false;
     }
 
     /**
@@ -91,7 +107,7 @@ public class ScreenFader : MonoBehaviour
      */
     private IEnumerator FadeFromBlack(UnityEvent eventToTrigger)
     {
-        _isLoading = true;
+        // _isLoading = true;
         fadeImage.gameObject.SetActive(true);
         yield return new WaitForSeconds(fadeInDelay);
         float alpha = 0;
@@ -105,7 +121,7 @@ public class ScreenFader : MonoBehaviour
 
         // Invoke finishing event
         eventToTrigger?.Invoke();
-        _isLoading = false;
+        isLoading = false;
         fadeImage.gameObject.SetActive(false);
     }
 }

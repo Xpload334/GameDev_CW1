@@ -162,4 +162,10 @@ public class LevelSceneManager : MonoBehaviour
         
         Debug.Log("Force set LevelsUnlocked to "+LevelsUnlocked);
     }
+
+    public void SetPlayerDeaths(int newVal)
+    {
+        PlayerPrefs.SetInt("playerDeaths", newVal);
+        Debug.Log("Force set PlayerDeaths to "+newVal);
+    }
 }
