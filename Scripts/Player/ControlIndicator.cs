@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +7,11 @@ using UnityEngine.UI;
 
 public class ControlIndicator : MonoBehaviour
 {
-    [SerializeField] private PlayerController _playerController;
-    private InputAction moveAction; //Action for moving player horizontally
-    private InputAction flipGravityAction; //Action for flipping gravity
-    private bool gravityFlipPress;
-    private float horizontalInput;
+    [SerializeField] private PlayerController playerController;
+    private InputAction _moveAction; //Action for moving player horizontally
+    private InputAction _flipGravityAction; //Action for flipping gravity
+    private bool _gravityFlipPress;
+    private float _horizontalInput;
 
     public SpriteRenderer keyLeftImage;
     public SpriteRenderer keyRightImage;
@@ -33,31 +34,34 @@ public class ControlIndicator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moveAction = _playerController.moveAction;
-        flipGravityAction = _playerController.flipGravityAction;
+        playerController = FindObjectOfType<PlayerController>();
         
-        flipGravityAction.started += _ =>
+        _moveAction = playerController.moveAction;
+        _flipGravityAction = playerController.flipGravityAction;
+        
+        _flipGravityAction.started += _ =>
         {
             GravityActionPressed();
         };
 
-        flipGravityAction.canceled += _ =>
+        _flipGravityAction.canceled += _ =>
         {
             GravityActionReleased();
         };
     }
+    
 
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = moveAction.ReadValue<float>();
+        _horizontalInput = _moveAction.ReadValue<float>();
 
-        if (horizontalInput < 0)
+        if (_horizontalInput < 0)
         {
             LeftKeyPressed();
             RightKeyReleased();
         }
-        else if(horizontalInput > 0)
+        else if(_horizontalInput > 0)
         {
             RightKeyPressed();
             LeftKeyReleased();
@@ -71,32 +75,60 @@ public class ControlIndicator : MonoBehaviour
 
     void GravityActionPressed()
     {
-        keyFlipImage.sprite = keySpacePressed;
+        if (keyFlipImage != null)
+        {
+            keyFlipImage.sprite = keySpacePressed;
+        }
     }
 
     void GravityActionReleased()
     {
-        keyFlipImage.sprite = keySpace;
+        if (keyFlipImage != null)
+        {
+            keyFlipImage.sprite = keySpace;
+        }
     }
 
     void LeftKeyPressed()
     {
-        keyLeftImage.sprite = keyLeftPressed;
+        if (keyLeftImage != null)
+        {
+            keyLeftImage.sprite = keyLeftPressed;
+        }
     }
 
     void LeftKeyReleased()
     {
-        keyLeftImage.sprite = keyLeft;
+        if (keyLeftImage != null)
+        {
+            keyLeftImage.sprite = keyLeft;
+        }
     }
-    
+
     void RightKeyPressed()
     {
-        keyRightImage.sprite = keyRightPressed;
+        if (keyRightImage != null)
+        {
+            keyRightImage.sprite = keyRightPressed;
+        }
     }
 
     void RightKeyReleased()
     {
-        keyRightImage.sprite = keyRight;
+        if (keyRightImage != null)
+        {
+            keyRightImage.sprite = keyRight;
+        }
+    }
+    
+    private void OnDestroy()
+    {
+        // Unsubscribe from input actions
+        if (_flipGravityAction != null)
+        {
+            _flipGravityAction.started -= _ => { GravityActionPressed(); };
+            _flipGravityAction.canceled -= _ => { GravityActionReleased(); };
+        }
     }
     
     

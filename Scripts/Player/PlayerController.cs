@@ -39,10 +39,10 @@ public class PlayerController : MonoBehaviour
     public Transform platformRBody;
     private Vector3 _lastPlatformPosition;
     //Coyote time
-    private float airFlipTime = 0.2f;
+    private float airFlipTime = 0.1f;
     [SerializeField] private float airFlipTimeCounter;
     //Flip buffer
-    private float flipBufferTime = 0.2f;
+    private float flipBufferTime = 0.1f;
     [SerializeField] private float flipBufferTimeCounter;
 
     void Start ()
@@ -220,6 +220,15 @@ public class PlayerController : MonoBehaviour
         SetCanAct(false);
         playerAnimationController.TriggerWinAnim();
         if(_playerSounds != null) _playerSounds.PlayWinSound();
+
+        // try
+        // {
+        //     Destroy(FindObjectOfType<ControlIndicator>());
+        // }
+        // catch
+        // {
+        //     // ignored
+        // }
     }
 
     
