@@ -50,6 +50,8 @@ MonoBehaviour:
   endingTrack: {fileID: 8300000, guid: 7dcd649cd621dc0418cd9d08ad8d8dae, type: 3}
   currentlyPlaying: {fileID: 0}
   currentScene: 
+  levelSelectSceneIndex: 0
+  endScreenSceneIndex: 14
 --- !u!82 &7783089400294790757
 AudioSource:
   m_ObjectHideFlags: 0

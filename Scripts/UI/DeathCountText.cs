@@ -25,7 +25,15 @@ public class DeathCountText : MonoBehaviour
     {
         //Deathcount
         _deathCount = PlayerPrefs.GetInt("playerDeaths", 0);
-        countText.text = "He has experienced " + _deathCount + " injuries.";
+
+        if (_deathCount <= 10)
+        {
+            countText.text = "He only experienced " + _deathCount + " injuries.";
+        }
+        else
+        {
+            countText.text = "He has experienced " + _deathCount + " injuries.";
+        }
         
         //Subtitle
         subtitleText.text = GetSubtitle(_deathCount);
