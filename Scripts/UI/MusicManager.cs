@@ -34,24 +34,19 @@ public class MusicManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             if(_audioSource == null) _audioSource = GetComponent<AudioSource>();
             _shouldPlay = true;
+            
+            _instance.SetMusicTrack();
         }
         else
         {
             _shouldPlay = false;
             Destroy(gameObject);
+            
+            _instance.SetMusicTrack();
         }
-        // if (musicObjs.Length > 1)
-        // {
-        //     Destroy(gameObject);
-        // }
-        // else
-        // {
-        //     DontDestroyOnLoad(transform.gameObject);
-        //     // currentlyPlaying = _audioSource.clip;
-        // }
     }
 
-    private void Start()
+    void SetMusicTrack()
     {
         if (!_shouldPlay) return;
         
@@ -68,6 +63,25 @@ public class MusicManager : MonoBehaviour
         {
             PlayLevelNormal();
         }
+    }
+
+    private void Start()
+    {
+        // if (!_shouldPlay) return;
+        //
+        // var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        // if (currentSceneIndex == levelSelectSceneIndex)
+        // {
+        //     PlayLevelSelect();
+        // }
+        // else if(currentSceneIndex == endScreenSceneIndex)
+        // {
+        //     PlayEndScreen();
+        // }
+        // else
+        // {
+        //     PlayLevelNormal();
+        // }
     }
 
     public void PlayLevelSelect()
