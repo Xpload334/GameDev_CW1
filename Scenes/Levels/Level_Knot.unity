@@ -227,6 +227,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1755544799}
     m_Modifications:
+    - target: {fileID: 6873164755727115282, guid: afa339855c2a6834583527b8cb0751e0, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8531818528872425745, guid: afa339855c2a6834583527b8cb0751e0, type: 3}
       propertyPath: objectsToActivate.Array.size
       value: 1
@@ -502,8 +506,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -325331819
+  m_SortingLayer: -2
   m_SortingOrder: -10
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -10404,6 +10408,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 2.3333335
       objectReference: {fileID: 0}
+    - target: {fileID: 6380294942560861205, guid: 508e3dc8f5effe742be1508fd53259cc, type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 508e3dc8f5effe742be1508fd53259cc, type: 3}
 --- !u!1001 &270308239
@@ -10564,15 +10572,15 @@ PrefabInstance:
       objectReference: {fileID: 1779341190}
     - target: {fileID: 7165596190194429000, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_Lens.OrthographicSize
-      value: 6
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 7165596190194429001, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7165596190194429001, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7165596190194429001, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10584,19 +10592,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7165596191766042315, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_Waypoints.Array.data[0].position.x
-      value: 0
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7165596191766042315, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_Waypoints.Array.data[0].position.y
-      value: 1
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7165596191766042315, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_Waypoints.Array.data[1].position.x
-      value: 31.80974
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 7165596191766042315, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
       propertyPath: m_Waypoints.Array.data[1].position.y
-      value: 1
+      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 143ac1a167b396f48a80eeec881dcbb0, type: 3}
@@ -13899,7 +13907,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888227293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -5}
+  m_LocalPosition: {x: 1.5, y: -0.5, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13975,7 +13983,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -14142,6 +14150,10 @@ PrefabInstance:
     - target: {fileID: 4185827543048056337, guid: 923048885ab3946488c3cfa7d85d9fdd, type: 3}
       propertyPath: m_DrawMode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4185827543048056337, guid: 923048885ab3946488c3cfa7d85d9fdd, type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4185827543048056337, guid: 923048885ab3946488c3cfa7d85d9fdd, type: 3}
       propertyPath: m_SpriteTileMode

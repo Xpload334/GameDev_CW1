@@ -5,6 +5,7 @@ using UnityEngine;
 public class PatrolPoints : MonoBehaviour
 {
     // private Rigidbody2D rb;
+    [SerializeField] private LineController _lineController;
     public List<Transform> patrolPointTransforms;
     private List<Vector3> patrolPoints = new List<Vector3>();
 
@@ -21,6 +22,12 @@ public class PatrolPoints : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Draw indicator line
+        if (_lineController != null)
+        {
+            _lineController.SetUpLine(patrolPointTransforms.ToArray());
+        }
+        
         //Use transforms list, in order
         if (patrolPointTransforms.Count != 0)
         {
@@ -45,7 +52,7 @@ public class PatrolPoints : MonoBehaviour
         objectivePoint = patrolPoints[objectivePointIndex];
 
         // rb = GetComponent<Rigidbody2D>();
-        
+
         StartCoroutine(PatrolAroundPoints());
     }
 
