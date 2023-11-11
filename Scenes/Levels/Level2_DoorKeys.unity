@@ -211,6 +211,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5101878089984714319, guid: 059b198d9c9e4f7458914fd5f6a4595c, type: 3}
+      propertyPath: m_text
+      value: Open Sesame
+      objectReference: {fileID: 0}
     - target: {fileID: 5101878090055744579, guid: 059b198d9c9e4f7458914fd5f6a4595c, type: 3}
       propertyPath: m_Interactable
       value: 1
