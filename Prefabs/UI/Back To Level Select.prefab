@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 959035581892172124}
   - component: {fileID: 959035581892172125}
   - component: {fileID: 959035581892172126}
+  - component: {fileID: 7162599327706523321}
   m_Layer: 5
   m_Name: ReturnToLevelSelect
   m_TagString: Untagged
@@ -200,3 +201,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7162599327706523321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959035581892172112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd44e9cdb0d24a45a0ddb2551e5cbc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  returnToLevelSelectButton: {fileID: 0}

@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 2891848583215274884}
   - component: {fileID: 2891848583215274887}
   - component: {fileID: 8960457763088902924}
+  - component: {fileID: 3885940079695761985}
   m_Layer: 5
   m_Name: RetryLevel Button
   m_TagString: Untagged
@@ -284,6 +285,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3885940079695761985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2891848583215274889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae600e7fa9c8a874f96361bc30bd570f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  retryLevelButton: {fileID: 0}
 --- !u!1 &3475081909608885239
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +563,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 115.55
+  m_fontSize: 97.75
   m_fontSizeBase: 163.02
   m_fontWeight: 400
   m_enableAutoSizing: 1
