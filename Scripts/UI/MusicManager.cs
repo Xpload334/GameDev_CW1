@@ -19,7 +19,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioClip endingTrack;
 
     [SerializeField] private AudioClip currentlyPlaying;
-    [SerializeField] private string currentScene;
+    [SerializeField] private int currentSceneIndex;
     
     private static MusicManager _instance;
     private bool _shouldPlay;
@@ -35,22 +35,48 @@ public class MusicManager : MonoBehaviour
             if(_audioSource == null) _audioSource = GetComponent<AudioSource>();
             _shouldPlay = true;
             
-            _instance.SetMusicTrack();
+            // _instance.SetMusicTrack();
         }
         else
         {
             _shouldPlay = false;
             Destroy(gameObject);
             
-            _instance.SetMusicTrack();
+            // _instance.SetMusicTrack();
         }
     }
 
-    void SetMusicTrack()
+    // private void Start()
+    // {
+    //     _instance.SetMusicTrack();
+    // }
+
+    //OnEnable comes first
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        // Debug.Log("OnEnable");
+    }
+    
+    //OnDisable last.
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+        // Debug.Log("OnDisable");
+    }
+    private void SceneManager_sceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.isLoaded)
+        {
+            SetMusicTrack();
+        }
+    }
+
+    public void SetMusicTrack()
     {
         if (!_shouldPlay) return;
         
-        var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         if (currentSceneIndex == levelSelectSceneIndex)
         {
             PlayLevelSelect();
@@ -63,25 +89,6 @@ public class MusicManager : MonoBehaviour
         {
             PlayLevelNormal();
         }
-    }
-
-    private void Start()
-    {
-        // if (!_shouldPlay) return;
-        //
-        // var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        // if (currentSceneIndex == levelSelectSceneIndex)
-        // {
-        //     PlayLevelSelect();
-        // }
-        // else if(currentSceneIndex == endScreenSceneIndex)
-        // {
-        //     PlayEndScreen();
-        // }
-        // else
-        // {
-        //     PlayLevelNormal();
-        // }
     }
 
     public void PlayLevelSelect()

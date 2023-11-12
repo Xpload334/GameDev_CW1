@@ -50,14 +50,14 @@ public class LevelSceneManager : MonoBehaviour
 
         if (currentSceneIndex == 0 || currentScene.Equals("LevelSelect"))
         {
-            try
-            {
-                FindObjectOfType<MusicManager>().PlayLevelSelect();
-            }
-            catch
-            {
-                // ignored
-            }
+            // try
+            // {
+            //     FindObjectOfType<MusicManager>().PlayLevelSelect();
+            // }
+            // catch
+            // {
+            //     // ignored
+            // }
 
             if (LevelsUnlocked == 0)
             {
@@ -67,30 +67,38 @@ public class LevelSceneManager : MonoBehaviour
             
             // LevelsUnlocked = PlayerPrefs.GetInt("levelsUnlocked", 1);
         }
-        else if (currentScene.Equals("EndScreen"))
-        {
-            try
-            {
-                FindObjectOfType<MusicManager>().PlayEndScreen();
-            }
-            catch
-            {
-                // ignored
-            }
-        }
-        else
-        {
-            try
-            {
-                FindObjectOfType<MusicManager>().PlayLevelNormal();
-            }
-            catch
-            {
-                // ignored
-            }
-        }
+        // else if (currentScene.Equals("EndScreen"))
+        // {
+        //     try
+        //     {
+        //         FindObjectOfType<MusicManager>().PlayEndScreen();
+        //     }
+        //     catch
+        //     {
+        //         // ignored
+        //     }
+        // }
+        // else
+        // {
+        //     try
+        //     {
+        //         FindObjectOfType<MusicManager>().PlayLevelNormal();
+        //     }
+        //     catch
+        //     {
+        //         // ignored
+        //     }
+        // }
         
         FadeIn();
+        // try
+        // {
+        //     FindObjectOfType<MusicManager>().SetMusicTrack();
+        // }
+        // catch
+        // {
+        //     Debug.Log("Failed to switch music tracks");
+        // }
     }
 
     void FadeIn()
