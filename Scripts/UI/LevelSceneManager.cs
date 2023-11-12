@@ -176,4 +176,13 @@ public class LevelSceneManager : MonoBehaviour
         PlayerPrefs.SetInt("playerDeaths", newVal);
         Debug.Log("Force set PlayerDeaths to "+newVal);
     }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting Game");
+        _screenFader.StartFadeToBlack(() =>
+        {
+            Application.Quit();
+        });
+    }
 }

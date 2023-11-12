@@ -14,5 +14,5 @@
 - Elevator to Nowhere, Aldous Ichnite, (Free Music Archive) (CC BY-NC): https://freemusicarchive.org/music/aldous-ichnite/paper-trails-and-pixels/elevator-to-nowhere/
 - Paper Trails and Pixels, Aldous Ichnite, (Free Music Archive) (CC BY-NC): https://freemusicarchive.org/music/aldous-ichnite/paper-trails-and-pixels/paper-trails-and-pixels/
 - Welcome to the Cubicle Abyss, Aldous Ichnite, (Free Music Archive) (CC BY-NC): https://freemusicarchive.org/music/aldous-ichnite/paper-trails-and-pixels/welcome-to-the-cubicle-abyss/
-- Sound Effects generated using: https://pro.sfxr.me
+- Sound Effects generated using: https://sfbgames.itch.io/chiptone
 
